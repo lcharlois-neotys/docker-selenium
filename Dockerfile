@@ -22,9 +22,6 @@ ARG UBUNTU_DATE
 # Docker build debug logging, green colored
 RUN printf "\033[1;32mFROM ubuntu:${UBUNTU_FLAVOR}-${UBUNTU_DATE} \033[0m\n"
 
-MAINTAINER Diego Molina <diemol@gmail.com>
-MAINTAINER Leo Gallucci <elgalu3+dosel@gmail.com>
-
 # https://github.com/docker/docker/pull/25466#discussion-diff-74622923R677
 LABEL maintainer "Diego Molina <diemol@gmail.com>"
 LABEL maintainer "Leo Gallucci <elgalu3+dosel@gmail.com>"
@@ -89,6 +86,9 @@ RUN apt -qqy update \
     dbus-x11 \
     wget \
     curl \
+    pulseaudio \
+    socat \
+    alsa-utils \
   && apt -qyy autoremove \
   && rm -rf /var/lib/apt/lists/* \
   && apt -qyy clean
@@ -429,8 +429,7 @@ ENV FF_LANG="en-US" \
     FF_PLATFORM="linux-x86_64" \
     FF_INNER_PATH="firefox/releases"
 
-#--- For Selenium 3
-ARG FF_VER="70.0.1"
+ARG FF_VER="88.0.1"
 
 ENV FF_COMP="firefox-${FF_VER}.tar.bz2"
 ENV FF_URL="${FF_BASE_URL}/${FF_INNER_PATH}/${FF_VER}/${FF_PLATFORM}/${FF_LANG}/${FF_COMP}"
@@ -448,7 +447,7 @@ LABEL selenium_firefox_version "${FF_VER}"
 #============
 # GeckoDriver
 #============
-ARG GECKOD_VER="0.26.0"
+ARG GECKOD_VER="0.29.1"
 ENV GECKOD_URL="https://github.com/mozilla/geckodriver/releases/download"
 RUN wget --no-verbose -O geckodriver.tar.gz \
      "${GECKOD_URL}/v${GECKOD_VER}/geckodriver-v${GECKOD_VER}-linux64.tar.gz" \
@@ -467,7 +466,7 @@ COPY bin/fail /usr/bin/
 #===============
 # TODO: Use Google fingerprint to verify downloads
 #  https://www.google.de/linuxrepositories/
-ARG EXPECTED_CHROME_VERSION="78.0.3904.108"
+ARG EXPECTED_CHROME_VERSION="91.0.4472.77"
 ENV CHROME_URL="https://dl.google.com/linux/direct" \
     CHROME_BASE_DEB_PATH="/home/seluser/chrome-deb/google-chrome" \
     GREP_ONLY_NUMS_VER="[0-9.]{2,20}"
@@ -509,7 +508,7 @@ USER seluser
 # Chrome webdriver
 #==================
 # How to get cpu arch dynamically: $(lscpu | grep Architecture | sed "s/^.*_//")
-ARG CHROME_DRIVER_VERSION="78.0.3904.105"
+ARG CHROME_DRIVER_VERSION="91.0.4472.19"
 ENV CHROME_DRIVER_BASE="chromedriver.storage.googleapis.com" \
     CPU_ARCH="64"
 ENV CHROME_DRIVER_FILE="chromedriver_linux${CPU_ARCH}.zip"
@@ -688,6 +687,7 @@ ENV FIREFOX_VERSION="${FF_VER}" \
   HOME="/home/seluser" \
   VNC_STORE_PWD_FILE="/home/seluser/.vnc/passwd" \
   BIN_UTILS="/usr/bin" \
+  LIB_UTILS="/usr/lib" \
   MEM_JAVA_PERCENT=80 \
   WAIT_FOREGROUND_RETRY="2s" \
   WAIT_VNC_FOREGROUND_RETRY="6s" \
@@ -740,6 +740,7 @@ ENV FIREFOX_VERSION="${FF_VER}" \
   NOVNC_PORT="${DEFAULT_NOVNC_PORT}" \
   NOVNC="false" \
   NOVNC_WAIT_TIMEOUT="5s" \
+  BROWSERMOBPROXY_START="false" \
   SUPERVISOR_HTTP_PORT="${DEFAULT_SUPERVISOR_HTTP_PORT}" \
   SUPERVISOR_HTTP_USERNAME="supervisorweb" \
   SUPERVISOR_HTTP_PASSWORD="somehttpbasicauthpwd" \
@@ -757,12 +758,14 @@ ENV FIREFOX_VERSION="${FF_VER}" \
   LOGFILE_BACKUPS=5 \
   LOGS_DIR="/var/log/cont" \
   VIDEO="false" \
+  AUDIO="false" \
   GRID="true" \
   CHROME="true" \
   FIREFOX="true" \
   MULTINODE="false" \
   FFMPEG_FRAME_RATE=10 \
   FFMPEG_CODEC_ARGS="-vcodec libx264 -preset ultrafast -pix_fmt yuv420p" \
+  FFMPEG_CODEC_VA_ARGS="-vcodec libx264 -acodec copy -preset ultrafast" \
   FFMPEG_FINAL_CRF=0 \
   FFMPEG_DRAW_MOUSE=1 \
   VIDEO_TMP_FILE_EXTENSION="mkv" \
@@ -799,6 +802,7 @@ ENV FIREFOX_VERSION="${FF_VER}" \
   VNC_STOP_SIGNAL="TERM" \
   NOVNC_STOP_SIGNAL="TERM" \
   VIDEO_REC_STOP_SIGNAL="INT" \
+  BROWSERMOBPROXY_STOP_SIGNAL="TERM" \
   DOCKER_SOCK="/var/run/docker.sock" \
   TEST_SLEEPS="0.1" \
   ZALENIUM="false" \
@@ -847,6 +851,21 @@ ENV SUPERVISOR_PIDFILE="${RUN_DIR}/supervisord.pid" \
     DOCKER_SELENIUM_STATUS="${LOGS_DIR}/docker-selenium-status.log" \
     VNC_TRYOUT_ERR_LOG="${LOGS_DIR}/vnc-tryouts-stderr" \
     VNC_TRYOUT_OUT_LOG="${LOGS_DIR}/vnc-tryouts-stdout"
+
+# Include Lib Browsermob Proxy
+USER root
+
+ENV BROWSERMOBPROXY_VER=2.1.4
+ENV BROWSERMOBPROXY_FOLDER=browsermob-proxy-${BROWSERMOBPROXY_VER}
+
+RUN  wget -nv -O browsermob-proxy.zip \
+       "https://github.com/lightbody/browsermob-proxy/releases/download/browsermob-proxy-${BROWSERMOBPROXY_VER}/browsermob-proxy-${BROWSERMOBPROXY_VER}-bin.zip" \
+  && unzip -x browsermob-proxy.zip \
+  && rm browsermob-proxy.zip \
+  && mv ${BROWSERMOBPROXY_FOLDER}/lib/browsermob-dist-${BROWSERMOBPROXY_VER}.jar ${LIB_UTILS}/ \
+  && rm -r ${BROWSERMOBPROXY_FOLDER}
+
+USER seluser
 
 #===================================
 # Fix dirs (again) and final chores

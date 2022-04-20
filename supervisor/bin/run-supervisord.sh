@@ -16,6 +16,7 @@ die () {
 ga_track_shutdown () {
   if [ "${SEND_ANONYMOUS_USAGE_INFO}" == "true" ]; then
     DisplayDataProcessingAgreement
+    DisplaySponsorRequest
 
     local args=(
         --max-time 10
@@ -39,7 +40,8 @@ ga_track_shutdown () {
 # Exit all child processes properly
 shutdown () {
   echo "Trapped SIGTERM/SIGINT/x so shutting down supervisord gracefully..."
-  ga_track_shutdown
+  # no longer tracking due to German law
+  # ga_track_shutdown
   stop
   wait
 

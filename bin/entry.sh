@@ -381,6 +381,7 @@ fi
 ga_track_start () {
   if [ "${SEND_ANONYMOUS_USAGE_INFO}" == "true" ]; then
     DisplayDataProcessingAgreement
+    DisplaySponsorRequest
 
     START_META_DATA=""
     START_META_DATA="${START_META_DATA} -proxy='${SELENIUM_NODE_PROXY_PARAMS}'"
@@ -537,7 +538,8 @@ env > env
 #------
 # export NORMAL_USER_UID="$(id -u seluser)"
 # export NORMAL_USER_GID="$(id -g seluser)"
-ga_track_start
+# no longer tracking due to German law
+# ga_track_start
 
 if [ "${DEBUG}" == "bash" ]; then
   run-supervisord.sh &

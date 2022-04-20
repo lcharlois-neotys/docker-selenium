@@ -1,12 +1,13 @@
-<img id="header" width="760" src="./images/icons/logo_wide.jpg" />
+# [NOT MAINTAINED] Please use <https://github.com/SeleniumHQ/docker-selenium>
+
+
+<img id="header" width="700" src="./images/icons/logo_wide.jpg" />
 
 # Selenium in Docker with Chrome and Firefox
 
 [![Build Status](https://travis-ci.org/elgalu/docker-selenium.svg?branch=master)](https://travis-ci.org/elgalu/docker-selenium "Travis CI")
 [![Docker Pulls](https://img.shields.io/docker/pulls/elgalu/selenium.svg)](https://hub.docker.com/r/elgalu/selenium/tags/)
 [![Docker](https://images.microbadger.com/badges/version/elgalu/selenium.svg)](https://microbadger.com/images/elgalu/selenium "Docker Badge")
-[![Analytics](https://ga-beacon.appspot.com/UA-18144954-10/github/elgalu/docker-selenium/README.md)](https://github.com/igrigorik/ga-beacon "Analytics")
-[![Gitter](https://badges.gitter.im/elgalu/selenium.svg)](https://gitter.im/elgalu/docker-selenium "Chat support")
 
 * selenium server grid with 2 nodes (chrome & firefox)
 * mp4 video recording
@@ -28,7 +29,7 @@ The purpose of this project is to have [Selenium][] running as simple and as fas
 
 This purpose is augmented by [Zalenium][] a project which uses this one to provide docker-selenium(s) on-demand.
 
-[Zalenium][] also forwards tests to a Cloud Provider (Sauce Labs, BrowserStack, TestingBot) when necessary.
+[Zalenium][] also forwards tests to a Cloud Provider (Sauce Labs, BrowserStack, TestingBot & LambdaTest) when necessary.
 
 <h2 id="official">Official repo</h2>
 
@@ -48,7 +49,7 @@ If you don't require video recording we suggest to use either [Google Chrome in 
 
 We also recommend avoiding [PhantomJS](https://github.com/ariya/phantomjs) as maintenance was stopped after Chrome & Firefox headless became available.
 
-You can also use a paid service like [Sauce Labs][sauce] or [BrowserStack][], note they offer free open source accounts and straightforward [integration with Travis CI](https://docs.travis-ci.com/user/sauce-connect/).
+You can also use a paid service like [Sauce Labs][sauce], [BrowserStack] or [LambdaTest][], note they offer free open source accounts and straightforward [integration with Travis CI](https://docs.travis-ci.com/user/sauce-connect/).
 
 ### Requisites
 This project is normally tested in the last version of Docker and docker-compose and also in the release candidates.
@@ -440,6 +441,7 @@ See [LICENSE.md](./LICENSE.md)
 [Selenium]: https://github.com/SeleniumHQ/selenium
 [sauce]: https://saucelabs.com/selenium/selenium-grid
 [BrowserStack]: https://www.browserstack.com/automate
+[LambdaTest]: https://www.lambdatest.com/selenium-automation
 [xvfb-electron]: http://electron.atom.io/docs/tutorial/testing-on-headless-ci
 [docker-compose.yml]: ./docker-compose.yml
 [releases]: https://github.com/elgalu/docker-selenium/releases/
