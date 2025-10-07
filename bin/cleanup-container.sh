@@ -3,7 +3,7 @@
 set +e
 
 # After transferring the logs: Kill unclosed browsers, if any
-killall --ignore-case --quiet --regexp "chrome.*"
+killall --ignore-case --quiet --regexp "Chrome.*"
 killall --ignore-case --quiet --regexp "geckodriver.*"
 killall --ignore-case --quiet --regexp "firefox.*"
 # Kill any open notifications so the next test does not see them

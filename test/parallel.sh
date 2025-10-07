@@ -2,7 +2,7 @@
 
 # Usage
 #  bash parallel.sh {browser} {threads} {test-per-thread=5}
-#  bash parallel.sh chrome 2
+#  bash parallel.sh Chrome 2
 #  bash parallel.sh firefox 2
 #  time ( VIDEO=true bash parallel.sh hybrid 4 )
 #  VIDEO=true bash parallel.sh hybrid 2
@@ -16,10 +16,10 @@ die () {
   echoerr "ERROR: $1"
   # if $2 is defined AND NOT EMPTY, use $2; otherwise, set to "3"
   errnum=${2-3}
-  ( ps aux | grep -i "python test/x chrome" | grep -v grep | awk '{print $2}' | xargs kill >/dev/null 2>&1 ) || true
+  ( ps aux | grep -i "python test/x Chrome" | grep -v grep | awk '{print $2}' | xargs kill >/dev/null 2>&1 ) || true
   ( ps aux | grep -i "python test/x firefox" | grep -v grep | awk '{print $2}' | xargs kill >/dev/null 2>&1 ) || true
   ( ps aux | grep parallel.sh | grep -v grep | awk '{print $2}' | xargs kill >/dev/null 2>&1 ) || true
-  ( ps aux | grep -i "python test/x chrome" | grep -v grep | awk '{print $2}' | xargs kill -9 >/dev/null 2>&1 ) || true
+  ( ps aux | grep -i "python test/x Chrome" | grep -v grep | awk '{print $2}' | xargs kill -9 >/dev/null 2>&1 ) || true
   ( ps aux | grep -i "python test/x firefox" | grep -v grep | awk '{print $2}' | xargs kill -9 >/dev/null 2>&1 ) || true
   ( ps aux | grep parallel.sh | grep -v grep | awk '{print $2}' | xargs kill -9 >/dev/null 2>&1 ) || true
   exit $errnum
@@ -29,7 +29,7 @@ TEST_TYPE=$1
 TOT_THREADS=$2
 TESTS_PER_THREAD=$3
 
-[ "${TEST_TYPE}" == "" ] && die "1st param must be one of 'chrome', 'firefox', 'hybrid'"
+[ "${TEST_TYPE}" == "" ] && die "1st param must be one of 'Chrome', 'firefox', 'hybrid'"
 
 [ "${TOT_THREADS}" == "" ] && die "2nd param should be the amount of parallel tests to run!"
 [ $((TOT_THREADS%2)) -eq 0 ] || die "The amount of threads needs to be an even number!"
@@ -83,19 +83,19 @@ fi
 echo "Mock server is running. Will now run ${1} threads. LOOP_END_NUM=${LOOP_END_NUM}"
 
 for i in `seq 0 $LOOP_END_NUM`; do
-    if [ "${TEST_TYPE}" == "chrome" ] || [ "${TEST_TYPE}" == "hybrid" ]; then
+    if [ "${TEST_TYPE}" == "Chrome" ] || [ "${TEST_TYPE}" == "hybrid" ]; then
         (
             if [ "${TEST_TYPE}" == "hybrid" ]; then
-                chrome_thread_num="$((i*2+1))"
+                Chrome_thread_num="$((i*2+1))"
             else
-                chrome_thread_num="$((i+1))"
+                Chrome_thread_num="$((i+1))"
             fi
 
             for j in `seq 1 $TESTS_PER_THREAD`; do
-                test_id_chrome=${STAGE}thread-${chrome_thread_num}_seq-$j
-                TEST_ID=$test_id_chrome python test/x chrome || \
-                TEST_ID=$test_id_chrome python test/x chrome || \
-                    die "Test failed on chrome $test_id_chrome"
+                test_id_Chrome=${STAGE}thread-${Chrome_thread_num}_seq-$j
+                TEST_ID=$test_id_Chrome python test/x Chrome || \
+                TEST_ID=$test_id_Chrome python test/x Chrome || \
+                    die "Test failed on Chrome $test_id_Chrome"
             done
         ) &
     fi

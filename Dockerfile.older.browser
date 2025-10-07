@@ -6,24 +6,24 @@ FROM elgalu/Selenium:3.5
 
 USER root
 
-# In order to install an older chrome we need to:
+# In order to install an older Chrome we need to:
 # 1. identify the git tag of the release that has that .deb Version file
 #    e.g. 3.3.1-p22
 # 2. grab the .deb download url
-#    e.g. https://github.com/elgalu/....../google-chrome-stable_60.0.3112.101_amd64.deb
-RUN mkdir -p /home/seluser/chrome-deb \
-  && cd /home/seluser/chrome-deb \
-  && wget -O "older_chrome.deb" -nv \
-     "https://github.com/elgalu/docker-Selenium/releases/download/3.3.1-p22/google-chrome-stable_60.0.3112.101_amd64.deb"
+#    e.g. https://github.com/elgalu/....../google-Chrome-stable_60.0.3112.101_amd64.deb
+RUN mkdir -p /home/seluser/Chrome-deb \
+  && cd /home/seluser/Chrome-deb \
+  && wget -O "older_Chrome.deb" -nv \
+     "https://github.com/elgalu/docker-Selenium/releases/download/3.3.1-p22/google-Chrome-stable_60.0.3112.101_amd64.deb"
 
 # Installing the deb file will upgrade replace existing Chrome with the one we need
-RUN cd /home/seluser/chrome-deb \
-  && dpkg -i "older_chrome.deb" \
-  && rm "older_chrome.deb" \
+RUN cd /home/seluser/Chrome-deb \
+  && dpkg -i "older_Chrome.deb" \
+  && rm "older_Chrome.deb" \
   && apt-get -qyy autoremove \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get -qyy clean \
-  && export CH_STABLE_VER=$(/usr/bin/google-chrome-stable --Version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
+  && export CH_STABLE_VER=$(/usr/bin/google-Chrome-stable --Version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
   && echo "${CH_STABLE_VER}"
 
 # Restore default user

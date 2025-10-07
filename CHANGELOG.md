@@ -41,14 +41,14 @@
 ## 3.141.59-p57
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.141.59-p56...3.141.59-p57 (2021-04-24)
     + Bartek Florczak (2):
-        * [7032814] Bump chrome patch Version, geckodriver minor Version
+        * [7032814] Bump Chrome patch Version, geckodriver minor Version
         * [63d31e3] Bump Chrome patch Version, bump FF to 88.0
     + Leo Gallucci (2):
         * [ce61029] We always need to login to docker to avoid: toomanyrequests
         * [a9c0701] We always need to login to docker to avoid: toomanyrequests
     + Thomas Schmidt (2):
-        * [31e300a] Bump chrome and chromedriver to v90
-        * [6e88a02] Update chrome Version
+        * [31e300a] Bump Chrome and Chromedriver to v90
+        * [6e88a02] Update Chrome Version
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  90.0.4430.85
@@ -90,7 +90,7 @@
 ## 3.141.59-p55
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.141.59-p54...3.141.59-p55 (2021-03-04)
     + Bartek Florczak (1):
-        * [7fb1e93] Bump chrome and chromedriver to v89
+        * [7fb1e93] Bump Chrome and Chromedriver to v89
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  89.0.4389.72
@@ -200,7 +200,7 @@
 ## 3.141.59-p50
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.141.59-p49...3.141.59-p50 (2020-11-20)
     + ewul (1):
-        * [15d35f7] update chrome and driver to 87 (#403)
+        * [15d35f7] update Chrome and driver to 87 (#403)
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  87.0.4280.66
@@ -356,7 +356,7 @@
         * [54cf46b] GidAds in README.md [ci skip]
         * [0291057] Update GitAds in README.md [ci skip]
     + Thomas Schmidt (1):
-        * [d91a646] Upgrade chromedriver to 84.0.4147.30 (#390)
+        * [d91a646] Upgrade Chromedriver to 84.0.4147.30 (#390)
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  84.0.4147.89
@@ -466,7 +466,7 @@
     + Leo Gallucci (1):
         * [9793157] @v0idp adds audio testing support (#377)
     + Serhii Khoma (1):
-        * [dc5bbf5] update chromedriver to 81.0.4044.69 (#375)
+        * [dc5bbf5] update Chromedriver to 81.0.4044.69 (#375)
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  81.0.4044.92
@@ -552,7 +552,7 @@
 ## 3.141.59-p34
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.141.59-p33...3.141.59-p34 (2019-12-16)
     + Sy (1):
-        * [90a9c65] Bump chromedriver binary Versions (#364)
+        * [90a9c65] Bump Chromedriver binary Versions (#364)
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  79.0.3945.79
@@ -730,7 +730,7 @@
 ## 3.141.59-p26
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.141.59-p25...3.141.59-p26 (2019-10-24)
     + Leo Gallucci (1):
-        * [98a26f5] Upgrade Chrome, chromedriver, Firefox 70.0
+        * [98a26f5] Upgrade Chrome, Chromedriver, Firefox 70.0
  + **Image tag details:**
     + Selenium Version: 3.141.59 (82b03c358b)
     + Chrome stable:  78.0.3904.70
@@ -3399,7 +3399,7 @@
 ## 3.6.0-p10
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.6.0-p9...3.6.0-p10 (2017-11-01)
     + Leo Gallucci (1):
-        * [8a7e5ab] Gather the chrome.deb artifact to include it in the release
+        * [8a7e5ab] Gather the Chrome.deb artifact to include it in the release
  + **Image tag details:**
     + Selenium Version: 3.6.0 (6fbf3ec767)
     + Chrome stable:  62.0.3202.75
@@ -3515,7 +3515,7 @@
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.6.0-p4...3.6.0-p5 (2017-10-27)
     + Upgrade Chrome patch to 62.0.3202.75
     + Upgrade Firefox patch to 56.0.2
-    + Use ARG instruction for label:Selenium_chrome_Version
+    + Use ARG instruction for label:Selenium_Chrome_Version
     + Use ARG instruction for env:FF_VER  and label:Selenium_firefox_Version
     + Use ARG instruction for env:SEL_VER and label:Selenium_Version
     + assert env:CH_STABLE_VER equals ARG:EXPECTED_CHROME_VERSION
@@ -3638,7 +3638,7 @@
 ## 3.6.0-p0
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/3.5.3-p14...3.6.0-p0 (2017-10-06)
     + Upgrade Selenium from 3.5.3 to 3.6.0 @diemol
-    + Fix WARN: chrome_driver.log:Xlib: extension RANDR missing on display
+    + Fix WARN: Chrome_driver.log:Xlib: extension RANDR missing on display
  + **Image tag details:**
     + Selenium Version: 3.6.0 (6fbf3ec767)
     + Chrome stable:  61.0.3163.100
@@ -3943,7 +3943,7 @@
     + Support non-sudo environments like K8s for running the container #175
     + TravisCI switch to the new feature: Stages
     + Add Dockerfile.older.browser example on how to install older browsers
-    + Deprecate legacy LABELs Selenium3_chrome_Version, Selenium3_firefox_Version and files cap3, capabilities3
+    + Deprecate legacy LABELs Selenium3_Chrome_Version, Selenium3_firefox_Version and files cap3, capabilities3
  + **Image tag details:**
     + Selenium Version: 3.5.3 (a88d25fe6b)
     + Chrome stable:  61.0.3163.91
@@ -4086,7 +4086,7 @@
     + Upgrade Firefox major from 52.0.2 to 55.0.3
     + Upgrade Chromedriver from 2.31 to 2.32
     + Chore: Use mock server at port 8280
-    + Note: There is an inconsistency in this Version with the docker image LABEL Selenium_chrome_Version
+    + Note: There is an inconsistency in this Version with the docker image LABEL Selenium_Chrome_Version
  + **Image tag details:**
     + Selenium Version: 3.3.1 (5234b32)
     + Chrome stable:  60.0.3112.113
@@ -4135,7 +4135,7 @@
     + Upgrade Chrome patch to 60.0.3112.101
     + Using the IP (91.189.89.49) instead of (keyserver.ubuntu.com) due to recurrent errors in Travis
     + Stop installing docker-compose as is already part of TravisCI env
-    + Chore: Add python get_a_chrome_headless_driver() example function
+    + Chore: Add python get_a_Chrome_headless_driver() example function
     + Chore: Add ga-beacon.appspot.com GA tracker to the README file
     + Chore: Add ga-datastudio-docker-Selenium.png v1
  + **Image tag details:**
@@ -4276,7 +4276,7 @@
 
 ## 3.3.1-p16
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/cd0ce13d3f2fd8dd6e9767b...5a95867c8ecf9e88a628 (2017-06-21)
-    + Support google chrome --lang argument, credits @pearj
+    + Support google Chrome --lang argument, credits @pearj
     + Upgrade ubuntu:xenial-20170619
     + Upgrade Chrome patch to 59.0.3071.109
  + **Image tag details:**
@@ -4645,9 +4645,9 @@
 
 ## 3.3.1-p2
  + **Changes:** https://github.com/elgalu/docker-Selenium/compare/273a2e5e236f854eaace315...9ae23377592888aea4 (2017-04-11)
-    + Add /var/log/cont/chrome_browser.log for Chrome driver logs via transfer-logs.sh
+    + Add /var/log/cont/Chrome_browser.log for Chrome driver logs via transfer-logs.sh
     + Fix /var/log/cont/firefox_browser.log due to https://goo.gl/5NgU2t
-    + Breaking change: Rename chromedriver.log into chrome_driver.log
+    + Breaking change: Rename Chromedriver.log into Chrome_driver.log
  + **Image tag details:**
     + Selenium 2: 2.53.1 (a36b8b1)
     + Selenium 3: 3.3.1 (5234b32)
@@ -4790,7 +4790,7 @@
         **screen-resolution**
 
       e.g.
-        `12:50:55.546 INFO - Adding browserName=chrome,maxInstances=1,platform=LINUX,acceptSslCerts=true,screenResolution=1900x1880,resolution=1900x1880,screen-resolution=1900x1880,Version=57.0.2987.110 ,chrome_binary=/usr/bin/google-chrome-stable`
+        `12:50:55.546 INFO - Adding browserName=Chrome,maxInstances=1,platform=LINUX,acceptSslCerts=true,screenResolution=1900x1880,resolution=1900x1880,screen-resolution=1900x1880,Version=57.0.2987.110 ,Chrome_binary=/usr/bin/google-Chrome-stable`
 
         `12:50:55.543 INFO - Adding browserName=firefox,maxInstances=1,platform=LINUX,acceptSslCerts=true,screenResolution=1900x1880,resolution=1900x1880,screen-resolution=1900x1880,Version=47.0.1,firefox_binary=/home/seluser/firefox-for-sel-2/firefox`
 
@@ -5089,9 +5089,9 @@
     + Breaking Change: Remove Sauce Labs & BrowserStack binaries
     + Allow to position Browsers in the top left by default closes #140
     + Upgrade Ubuntu xenial date from 20161213 to 20170119
-    + Chore: Add docker image LABEL Selenium2_chrome_Version
+    + Chore: Add docker image LABEL Selenium2_Chrome_Version
     + Chore: Add docker image LABEL Selenium2_firefox_Version
-    + Chore: Add docker image LABEL Selenium3_chrome_Version
+    + Chore: Add docker image LABEL Selenium3_Chrome_Version
     + Chore: Add docker image LABEL Selenium3_firefox_Version
  + **Image tag details:**
     + Selenium 2: 2.53.1 (a36b8b1)
@@ -5711,7 +5711,7 @@
 
 ## 2.53.1y
  + **Changes:** (2016-09-27)
- + Set chromedriver --log-path='/var/log/cont/chromedriver.log' **RENAMED** to chrome_driver.log
+ + Set Chromedriver --log-path='/var/log/cont/Chromedriver.log' **RENAMED** to Chrome_driver.log
  + Add geckodriver for Firefox >= 48 (future releases)
  + Upgrade Ubuntu xenial to 20160923
  + Perhaps fixed DBUS mistery. See `entry.sh`
@@ -7195,7 +7195,7 @@
 ## 2.48.2a
  + **Changes:** (2015-10-20)
  + Upgrade to Selenium 2.48.2
- + Upgrade to chromedriver 2.20
+ + Upgrade to Chromedriver 2.20
  + Upgrade to Firefox to 41.0.2
  + Upgrade to Chrome to 46.0.2490.71
  + Upgrade to ubuntu:wily-20151009
@@ -7359,7 +7359,7 @@
 
 ## 2.47.1h
  + **Changes:** (2015-08-28)
- + Upgrade Firefox 40.0.3, Chrome flavors, chromedriver 2.19 (Leo Gallucci)
+ + Upgrade Firefox 40.0.3, Chrome flavors, Chromedriver 2.19 (Leo Gallucci)
  + **Image tag details:**
     + Selenium: 2.47.1 (411b314)
     + Chrome stable:         44.0.2403.157
@@ -7394,7 +7394,7 @@
               40.0.2  39.0.3  38.0.6  37.0.2  36.0.4
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.18.343837 (52eb4041461e46a6b73308ebb19e85787ced4281)
+    + Chromedriver: 2.18.343837 (52eb4041461e46a6b73308ebb19e85787ced4281)
     + Java: 1.8.0_66-internal OpenJDK 64-Bit 1.8.0_66-b01
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.8.1, build d12ea79
@@ -7407,7 +7407,7 @@
 
 ## 2.47.1f
  + **Changes:** (2015-08-19)
- + Upgrade chromedriver from 2.17 to 2.18 (Leo Gallucci)
+ + Upgrade Chromedriver from 2.17 to 2.18 (Leo Gallucci)
  + Upgrade Sauce Connect Version and add `sc --doctor`
  + Retry Sauce Connect via -e SAUCE_TUNNEL_MAX_RETRY_ATTEMPTS
  + **Image tag details:**
@@ -7419,7 +7419,7 @@
               40.0.2  39.0.3  38.0.6  37.0.2  36.0.4
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.18.343837 (52eb4041461e46a6b73308ebb19e85787ced4281)
+    + Chromedriver: 2.18.343837 (52eb4041461e46a6b73308ebb19e85787ced4281)
     + Java: 1.8.0_66-internal OpenJDK 64-Bit 1.8.0_66-b01
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.8.1, build d12ea79
@@ -7445,7 +7445,7 @@
               40.0.2  39.0.3  38.0.6  37.0.2  36.0.4
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
+    + Chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
     + Java: 1.8.0_66-internal OpenJDK 64-Bit 1.8.0_66-b01
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.8.1, build d12ea79
@@ -7472,7 +7472,7 @@
                       39.0.3  38.0.6  37.0.2  36.0.4
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
+    + Chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
     + Java: 1.8.0_66-internal OpenJDK 64-Bit 1.8.0_66-b01
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7483,8 +7483,8 @@
 
 ## 2.47.1c
  + **Changes:** (2015-08-03)
- + Upgrade chromedriver from 2.16 to 2.17 (Leo Gallucci)
- + Upgrade chrome unstable from 45 to 46.0.2467.2
+ + Upgrade Chromedriver from 2.16 to 2.17 (Leo Gallucci)
+ + Upgrade Chrome unstable from 45 to 46.0.2467.2
  + Include and improve host-scripts inside the docker image
  + Reorganize packages installation order
  + **Image tag details:**
@@ -7496,7 +7496,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
+    + Chromedriver: 2.17.340116 (2557bebb9de060c37c1a5d8d51ef72bb91106af6)
     + Java: 1.8.0_60-internal OpenJDK 64-Bit 1.8.0_60-b22
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7508,7 +7508,7 @@
 ## 2.47.1a
  + **Changes:** (2015-07-30)
  + Upgrade Selenium from 2.46.0 to 2.47.1 (Leo Gallucci)
- + Upgrade chrome stable to 44.0.2403.125
+ + Upgrade Chrome stable to 44.0.2403.125
  + Add -e MEM_JAVA to allow to pass custom values like "1024m".
  + **Image tag details:**
     + Selenium: 2.47.1 (411b314)
@@ -7519,7 +7519,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_60-internal OpenJDK 64-Bit 1.8.0_60-b22
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7530,7 +7530,7 @@
 
 ## 2.46.0-06
  + **Changes:** (2015-07-24)
- + Upgrade chrome stable to 44.0.2403.89. (Leo Gallucci)
+ + Upgrade Chrome stable to 44.0.2403.89. (Leo Gallucci)
  + Remove letter v from Version tags due to github tarball issue.
  + Add +extension GLX to Xvfb in preparation for android emulators.
  + **Image tag details:**
@@ -7542,7 +7542,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_60-internal OpenJDK 64-Bit 1.8.0_60-b22
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7564,7 +7564,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_60-internal OpenJDK 64-Bit 1.8.0_60-b22
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7589,7 +7589,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_60-internal OpenJDK 64-Bit 1.8.0_60-b22
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7612,7 +7612,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7623,7 +7623,7 @@
 
 ## v2.46.0-01
  + **Changes:** (2015-07-16)
- + Launch as grid only, firefox node only, chrome node only. (Leo Gallucci)
+ + Launch as grid only, firefox node only, Chrome node only. (Leo Gallucci)
  + Start services via env vars VIDEO=false GRID=true CHROME=true FIREFOX=true
  + **Image tag details:**
     + Selenium: 2.46.0 (87c69e2)
@@ -7634,7 +7634,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7648,7 +7648,7 @@
  + Make Selenium maxInstances & maxSession configurable. (Leo Gallucci)
  + MAJOR: turned docker-Selenium into 1 hub N nodes localhost setup.
  + MAJOR: Provide last 15 Versions and select via -e FIREFOX_VERSION.
- + Provide chrome stable, beta and unstable via -e CHROME_FLAVOR.
+ + Provide Chrome stable, beta and unstable via -e CHROME_FLAVOR.
  + Mutated SELENIUM_PARAMS into SELENIUM_HUB_PARAMS & SELENIUM_NODE_PARAMS
  + Record videos via `-e VIDEO=true` or start-video/stop-video scripts.
  + **Image tag details:**
@@ -7660,7 +7660,7 @@
                       39.0    38.0.6  37.0.2
       35.0.1  34.0.5  33.0.3  32.0.3  31.0    30.0
       29.0.1  28.0    27.0.1  26.0    25.0.1  24.0
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
     + Built with: Docker Version 1.7.1, build 786b29d
@@ -7682,7 +7682,7 @@
  + **Image tag details:**
     + Selenium: 2.46.0 (87c69e2)
     + Chrome: 43.0.2357.132
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Firefox: 39.0
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
@@ -7699,7 +7699,7 @@
  + **Image tag details:**
     + Selenium: 2.46.0 (87c69e2)
     + Chrome: 43.0.2357.132
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Firefox: 39.0
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
@@ -7720,7 +7720,7 @@
  + **Image tag details:**
     + Selenium: 2.46.0 (87c69e2)
     + Chrome: 43.0.2357.130
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Firefox: 38.0.5
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
@@ -7733,12 +7733,12 @@
 ## v2.46.0-base1
  + **Changes:** (2015-06-09)
  + Upgrade Selenium from 2.45.0 to 2.46.0
- + Upgrade chromedriver from 2.15 to 2.16
+ + Upgrade Chromedriver from 2.15 to 2.16
  + Add Xdummy (Xorg config) driver as an alternative to Xvfb (Leo Gallucci)
  + **Image tag details:**
     + Selenium: 2.46.0 (87c69e2)
     + Chrome: 43.0.2357.124
-    + chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
+    + Chromedriver: 2.16.333243 (0bfa1d3575fc1044244f21ddb82bf870944ef961)
     + Firefox: 38.0
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
@@ -7752,7 +7752,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.81
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45 HotSpot(TM) 64-Bit 1.8.0_45-b14
     + Timezone: Europe/Berlin
@@ -7767,7 +7767,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.81
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45-internal OpenJDK 1.8.0_45-internal-b14
     + Timezone: Europe/Berlin
@@ -7781,7 +7781,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.81
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45-internal OpenJDK 1.8.0_45-internal-b14
     + Timezone: Europe/Berlin
@@ -7797,7 +7797,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.81
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45-internal OpenJDK 1.8.0_45-internal-b14
     + Timezone: Europe/Berlin
@@ -7811,7 +7811,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.81
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45-internal OpenJDK 1.8.0_45-internal-b14
     + Timezone: Europe/Berlin
@@ -7827,7 +7827,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 43.0.2357.65
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 38.0
     + Java: 1.8.0_45-internal OpenJDK 1.8.0_45-internal-b14
     + Timezone: Europe/Berlin
@@ -7841,7 +7841,7 @@
  + **Image tag details:**
     + Selenium: 2.45.0 (5017cb8)
     + Chrome: 42.0.2311.135
-    + chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
+    + Chromedriver: 2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3)
     + Firefox: 37.0.2
     + Java: 1.7.0_79 OpenJDK 7u79-2.5.5-0ubuntu1
     + Timezone: Europe/Berlin
@@ -7855,7 +7855,7 @@
 ## v2.45.0-berlin
  + **Changes:** (2015-04-28)
  + Upgrade to Selenium v2.44.0 (Leo Gallucci)
- + Upgrade chromedriver to always use LATEST, current 2.14 (Leo Gallucci)
+ + Upgrade Chromedriver to always use LATEST, current 2.14 (Leo Gallucci)
  + Stops using root for Selenium and vnc access (Leo Gallucci)
  + Upgrade Ubuntu from 14.04 (trusty) to 15.04 (vivid) (Leo Gallucci)
  + Switch timezone from US/Pacific to Europe/Berlin (Leo Gallucci)
@@ -7866,11 +7866,11 @@
 
 ## v2.44.0 (2014-11-02) - alpha
  + Upgrade to Selenium v2.44.0 (Leo Gallucci)
- + Upgrade chromedriver to 2.12 (Leo Gallucci)
+ + Upgrade Chromedriver to 2.12 (Leo Gallucci)
 
 ## v2.43.1 (2014-09-25) - alpha
  + Upgrade to Selenium v2.43.1 (Leo Gallucci)
- + Upgrade chromedriver to 2.10 (Leo Gallucci)
+ + Upgrade Chromedriver to 2.10 (Leo Gallucci)
  + /etc/hosts hack no longer necessary since docker >= 1.2.0 (Leo Gallucci)
  + Specify exact base image from ubuntu:14.04 to ubuntu:14.04.1 (Leo Gallucci)
 

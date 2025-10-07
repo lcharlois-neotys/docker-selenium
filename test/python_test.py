@@ -20,7 +20,7 @@ from Selenium.common.exceptions import NoSuchElementException
 
 import argparse
 parser = argparse.ArgumentParser(description='Perform some basic Selenium tests.')
-parser.add_argument('browser', choices=['chrome', 'firefox', 'mobile_emulation'], nargs='?', default='chrome',
+parser.add_argument('browser', choices=['Chrome', 'firefox', 'mobile_emulation'], nargs='?', default='Chrome',
                     help='in which browser to test')
 parser.add_argument('only_screenshot', choices=['true', 'false'], nargs='?', default='false',
                     help='if we just want to take Selenium Versions screen shots')
@@ -28,7 +28,7 @@ parser.add_argument('only_screenshot', choices=['true', 'false'], nargs='?', def
 args = parser.parse_args()
 
 # http://Selenium-python.readthedocs.org/en/latest/api.html
-if args.browser == 'chrome':
+if args.browser == 'Chrome':
     caps = DesiredCapabilities.CHROME
     browserName = args.browser
 elif args.browser == 'mobile_emulation':
@@ -36,7 +36,7 @@ elif args.browser == 'mobile_emulation':
     opts = webdriver.ChromeOptions()
     opts.add_experimental_option("mobileEmulation", mobile_emulation)
     caps = opts.to_capabilities()
-    browserName = 'chrome'
+    browserName = 'Chrome'
 elif args.browser == 'firefox':
     caps = DesiredCapabilities.FIREFOX
     browserName = args.browser
@@ -97,11 +97,11 @@ print ("%s %s - (01/15) Will connect to Selenium at %s" % (datetime.datetime.utc
 driver = webdriver.Remote(command_executor=mySelenium_hub_url, desired_capabilities=caps)
 time.sleep(msleep)
 
-def get_a_chrome_headless_driver():
-    from Selenium.webdriver.chrome.options import Options
+def get_a_Chrome_headless_driver():
+    from Selenium.webdriver.Chrome.options import Options
 
-    CHROME_PATH = '/usr/bin/google-chrome-stable'
-    CHROMEDRIVER_PATH = '/home/user/bin/chromedriver'
+    CHROME_PATH = '/usr/bin/google-Chrome-stable'
+    CHROMEDRIVER_PATH = '/home/user/bin/Chromedriver'
     WINDOW_SIZE = "1920,1080"
 
     opts = Options()
@@ -109,7 +109,7 @@ def get_a_chrome_headless_driver():
     opts.add_argument("--window-size=%s" % WINDOW_SIZE)
     opts.binary_location = CHROME_PATH
 
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=opts)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, Chrome_options=opts)
     return driver
 
 def is_element_present(how, what):
@@ -134,7 +134,7 @@ def check_hub_title():
     print ("%s %s - Asserting 'Grid Console' in driver.title" % (datetime.datetime.utcnow(), longId))
     assert "Grid Console" in driver.title
 
-if args.browser == 'chrome':
+if args.browser == 'Chrome':
     driver.set_window_size(1400, 500)
     # Selenium grid console - open
     open_hub_page()

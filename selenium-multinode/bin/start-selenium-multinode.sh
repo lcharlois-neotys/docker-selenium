@@ -37,17 +37,17 @@ echo "INFO: JAVA_OPTS are '${JAVA_OPTS}'"
 #  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
 # See node defaults at
 #  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
-CHROME_BROWSER_CAPS="browserName=chrome,${COMMON_CAPS}"
+CHROME_BROWSER_CAPS="browserName=Chrome,${COMMON_CAPS}"
 CHROME_BROWSER_CAPS="${CHROME_BROWSER_CAPS},Version=${CHROME_VERSION}"
-# CHROME_BROWSER_CAPS="${CHROME_BROWSER_CAPS},chrome_binary=${CHROME_PATH}"
+# CHROME_BROWSER_CAPS="${CHROME_BROWSER_CAPS},Chrome_binary=${CHROME_PATH}"
 
 FIREFOX_BROWSER_CAPS="browserName=firefox,${COMMON_CAPS}"
 FIREFOX_BROWSER_CAPS="${FIREFOX_BROWSER_CAPS},Version=${FIREFOX_VERSION}"
 
 java \
-  -Dwebdriver.chrome.driver="/home/seluser/chromedriver" \
-  -Dwebdriver.chrome.logfile="${LOGS_DIR}/chrome_driver.log" \
-  -Dwebdriver.chrome.verboseLogging="${CHROME_VERBOSELOGGING}" \
+  -Dwebdriver.Chrome.driver="/home/seluser/Chromedriver" \
+  -Dwebdriver.Chrome.logfile="${LOGS_DIR}/Chrome_driver.log" \
+  -Dwebdriver.Chrome.verboseLogging="${CHROME_VERBOSELOGGING}" \
   -Dwebdriver.firefox.logfile="${LOGS_DIR}/firefox_driver.log" \
   ${JAVA_OPTS} \
   -jar ${SELENIUM_JAR_PATH} \

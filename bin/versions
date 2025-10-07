@@ -2,14 +2,14 @@
 
 echo "Selenium 3 Version=$(Selenium_Version) revision=$(Selenium_revision_Version)"
 
-echo "chrome_stable_Version=$(chrome_stable_Version)"
-google-chrome-stable --Version
+echo "Chrome_stable_Version=$(Chrome_stable_Version)"
+google-Chrome-stable --Version
 
 echo "firefox_Version=$(firefox_Version)"
 firefox --Version
 
-echo "chromedriver_Version=$(chromedriver_Version)"
-chromedriver --Version
+echo "Chromedriver_Version=$(Chromedriver_Version)"
+Chromedriver --Version
 
 echo "geckodriver_Version=$(geckodriver_Version)"
 /opt/geckodriver --Version

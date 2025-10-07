@@ -30,13 +30,13 @@ export VNC_TO_PORT ?= 40700
 export WAIT_ALL_DONE ?= 80s
 
 # Number of nodes
-export chrome ?= 1
+export Chrome ?= 1
 export firefox ?= 1
 
 # To target a specific node number
 # for example to VNC into it via
-#  make see browser=chrome node=1
-export browser ?= chrome
+#  make see browser=Chrome node=1
+export browser ?= Chrome
 export node ?= 1
 
 # If you project name is Selenium and it includes two services

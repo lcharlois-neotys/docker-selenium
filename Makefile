@@ -1,16 +1,16 @@
 # Usage
 #  make setup #first time
-#  make chrome=3 firefox=5
+#  make Chrome=3 firefox=5
 #   note is destructive, firsts `compose down`
 #   warns if your service is not listed in the `docker-compose-tests.yml`
 #  make down
 #
 # All in one
-#  make setup compose chrome=3 firefox=5 see browser=firefox node=5
+#  make setup compose Chrome=3 firefox=5 see browser=firefox node=5
 #
 # Contributing
 #  export TESTING_MAKE=true proj=leo nodes=2
-#  make chrome=2 firefox=2 && make seeall dock
+#  make Chrome=2 firefox=2 && make seeall dock
 ifeq ($(OS),Windows_NT)
 $(error Windows is not currently supported)
 endif
@@ -144,7 +144,7 @@ see: check_vncviewer
 
 # Shortcut to VNC into Chrome
 seech:
-	@$(MAKE) -s see browser=chrome
+	@$(MAKE) -s see browser=Chrome
 
 # Shortcut to VNC into Firefox
 seeff:
@@ -168,7 +168,7 @@ cleanup:
 # like cleanup but verbose plus graceful stop-video
 down:
 	@if [ "${VIDEO}" = "true" ]; then \
-	  $(MAKE) -s stop_videos_chrome ; \
+	  $(MAKE) -s stop_videos_Chrome ; \
 	  $(MAKE) -s stop_videos_firefox ; \
 	fi
 	docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} down \
@@ -180,19 +180,19 @@ stop_videos:
 	    >./mk/stop_video_${browser}_$$node.log || true ; \
 	done
 
-stop_videos_chrome:
-	@$(MAKE) -s stop_videos browser=chrome tot_nodes=${chrome}
+stop_videos_Chrome:
+	@$(MAKE) -s stop_videos browser=Chrome tot_nodes=${Chrome}
 
 stop_videos_firefox:
 	@$(MAKE) -s stop_videos browser=firefox tot_nodes=${firefox}
 
 scale:
-	docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} scale ${APP_NAME}=1 hub=1 chrome=${chrome} firefox=${firefox}
-	@$(MAKE) -s wait chrome=${chrome} firefox=${firefox}
+	docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} scale ${APP_NAME}=1 hub=1 Chrome=${Chrome} firefox=${firefox}
+	@$(MAKE) -s wait Chrome=${Chrome} firefox=${firefox}
 
 compose: basic_reqs cleanup
 	docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} up -d
-	@$(MAKE) -s scale chrome=${chrome} firefox=${firefox}
+	@$(MAKE) -s scale Chrome=${Chrome} firefox=${firefox}
 
 wait:
 	./mk/wait.sh
@@ -205,25 +205,25 @@ move: check_wmctrl
 gather_videos:
 	./mk/gather_videos.sh
 
-gather_videos_chrome:
-	@$(MAKE) -s gather_videos browser=chrome tot_nodes=${chrome}
+gather_videos_Chrome:
+	@$(MAKE) -s gather_videos browser=Chrome tot_nodes=${Chrome}
 
 gather_videos_firefox:
 	@$(MAKE) -s gather_videos browser=firefox tot_nodes=${firefox}
 
 # Gather video artifacts
-videos: gather_videos_chrome gather_videos_firefox
+videos: gather_videos_Chrome gather_videos_firefox
 
 # VNC open all. As of now only 4 are supported
 seeall: check_vncviewer
-	@$(MAKE) -s see browser=chrome node=1
+	@$(MAKE) -s see browser=Chrome node=1
 	@sleep 0.3
 	@$(MAKE) -s see browser=firefox node=1
 
 # Move them all. As of now only 4 are supported
 dock: check_wmctrl
 	@sleep 0.2 #TODO Make active wait: http://stackoverflow.com/a/19441380/511069
-	@$(MAKE) -s move browser=chrome node=1
+	@$(MAKE) -s move browser=Chrome node=1
 	@sleep 0.2 #TODO Make active wait
 	@$(MAKE) -s move browser=firefox node=1
 
@@ -260,10 +260,10 @@ test:
 	move \
 	videos \
 	gather_videos \
-	gather_videos_chrome \
+	gather_videos_Chrome \
 	gather_videos_firefox \
 	stop_videos \
-	stop_videos_chrome \
+	stop_videos_Chrome \
 	stop_videos_firefox \
 	env \
 	test

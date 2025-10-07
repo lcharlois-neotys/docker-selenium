@@ -468,29 +468,29 @@ COPY bin/fail /usr/bin/
 #  https://www.google.de/linuxrepositories/
 ARG EXPECTED_CHROME_VERSION="100.0.4896.127"
 ENV CHROME_URL="https://dl.google.com/linux/direct" \
-    CHROME_BASE_DEB_PATH="/home/seluser/chrome-deb/google-chrome" \
+    CHROME_BASE_DEB_PATH="/home/seluser/Chrome-deb/google-Chrome" \
     GREP_ONLY_NUMS_VER="[0-9.]{2,20}"
 
-LABEL Selenium_chrome_Version "${EXPECTED_CHROME_VERSION}"
+LABEL Selenium_Chrome_Version "${EXPECTED_CHROME_VERSION}"
 
 RUN apt -qqy update \
-  && mkdir -p chrome-deb \
-  && wget -nv "${CHROME_URL}/google-chrome-stable_current_amd64.deb" \
-          -O "./chrome-deb/google-chrome-stable_current_amd64.deb" \
+  && mkdir -p Chrome-deb \
+  && wget -nv "${CHROME_URL}/google-Chrome-stable_current_amd64.deb" \
+          -O "./Chrome-deb/google-Chrome-stable_current_amd64.deb" \
   && apt -qyy --no-install-recommends install \
         "${CHROME_BASE_DEB_PATH}-stable_current_amd64.deb" \
   && rm "${CHROME_BASE_DEB_PATH}-stable_current_amd64.deb" \
-  && rm -rf ./chrome-deb \
+  && rm -rf ./Chrome-deb \
   && apt -qyy autoremove \
   && rm -rf /var/lib/apt/lists/* \
   && apt -qyy clean \
-  && export CH_STABLE_VER=$(/usr/bin/google-chrome-stable --Version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
+  && export CH_STABLE_VER=$(/usr/bin/google-Chrome-stable --Version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
   && echo "CH_STABLE_VER:'${CH_STABLE_VER}' vs EXPECTED_CHROME_VERSION:'${EXPECTED_CHROME_VERSION}'" \
   && [ "${CH_STABLE_VER}" = "${EXPECTED_CHROME_VERSION}" ] || fail
 
-# We have a wrapper for /opt/google/chrome/google-chrome
-RUN mv /opt/google/chrome/google-chrome /opt/google/chrome/google-chrome-base
-COPY Selenium-node-chrome/opt /opt
+# We have a wrapper for /opt/google/Chrome/google-Chrome
+RUN mv /opt/google/Chrome/google-Chrome /opt/google/Chrome/google-Chrome-base
+COPY Selenium-node-Chrome/opt /opt
 COPY lib/* /usr/lib/
 
 # Use a custom wallpaper for Fluxbox
@@ -509,20 +509,20 @@ USER seluser
 #==================
 # How to get cpu arch dynamically: $(lscpu | grep Architecture | sed "s/^.*_//")
 ARG CHROME_DRIVER_VERSION="100.0.4896.60"
-ENV CHROME_DRIVER_BASE="chromedriver.storage.googleapis.com" \
+ENV CHROME_DRIVER_BASE="Chromedriver.storage.googleapis.com" \
     CPU_ARCH="64"
-ENV CHROME_DRIVER_FILE="chromedriver_linux${CPU_ARCH}.zip"
+ENV CHROME_DRIVER_FILE="Chromedriver_linux${CPU_ARCH}.zip"
 ENV CHROME_DRIVER_URL="https://${CHROME_DRIVER_BASE}/${CHROME_DRIVER_VERSION}/${CHROME_DRIVER_FILE}"
-# Gets latest chrome driver Version. Or you can hard-code it, e.g. 2.15
-RUN  wget -nv -O chromedriver_linux${CPU_ARCH}.zip ${CHROME_DRIVER_URL} \
-  && unzip chromedriver_linux${CPU_ARCH}.zip \
-  && rm chromedriver_linux${CPU_ARCH}.zip \
-  && mv chromedriver \
-        chromedriver-${CHROME_DRIVER_VERSION} \
-  && chmod 755 chromedriver-${CHROME_DRIVER_VERSION} \
-  && ln -s chromedriver-${CHROME_DRIVER_VERSION} \
-           chromedriver \
-  && sudo ln -s /home/seluser/chromedriver /usr/bin
+# Gets latest Chrome driver Version. Or you can hard-code it, e.g. 2.15
+RUN  wget -nv -O Chromedriver_linux${CPU_ARCH}.zip ${CHROME_DRIVER_URL} \
+  && unzip Chromedriver_linux${CPU_ARCH}.zip \
+  && rm Chromedriver_linux${CPU_ARCH}.zip \
+  && mv Chromedriver \
+        Chromedriver-${CHROME_DRIVER_VERSION} \
+  && chmod 755 Chromedriver-${CHROME_DRIVER_VERSION} \
+  && ln -s Chromedriver-${CHROME_DRIVER_VERSION} \
+           Chromedriver \
+  && sudo ln -s /home/seluser/Chromedriver /usr/bin
 
 #=================
 # Supervisor conf
@@ -549,7 +549,7 @@ ENV DEFAULT_SELENIUM_HUB_PORT="24444" \
 # Commented for now; all these Versions are still available at
 #   https://github.com/elgalu/docker-Selenium/releases/tag/2.47.1m
 # CHROME_FLAVOR "stable"
-#   Default chrome flavor, options no longer available: beta|unstable
+#   Default Chrome flavor, options no longer available: beta|unstable
 # PICK_ALL_RANDOM_PORTS "true" / "false"
 #   Randomize all ports, i.e. pick unused unprivileged ones
 # RANDOM_PORT_FROM
@@ -590,9 +590,9 @@ ENV DEFAULT_SELENIUM_HUB_PORT="24444" \
 #   "--no-sandbox --disable-gpu" To taggle issue #58 see https://goo.gl/fz6RTu
 #   more: "--ignore-certificate-errors"
 # CHROME_VERBOSELOGGING
-#   Will be passed with: -Dwebdriver.chrome.verboseLogging
-#     SELENIUM_NODE_CHROME_PARAMS='-DSelenium.chrome.args="--no-sandbox"' \
-#     WEBDRIVER_NODE_CHROME_PARAMS='-Dwebdriver.chrome.args="--no-sandbox"' \
+#   Will be passed with: -Dwebdriver.Chrome.verboseLogging
+#     SELENIUM_NODE_CHROME_PARAMS='-DSelenium.Chrome.args="--no-sandbox"' \
+#     WEBDRIVER_NODE_CHROME_PARAMS='-Dwebdriver.Chrome.args="--no-sandbox"' \
 #     Selenium capabilities descriptive (to avoid opera/ie warnings)
 #      docs at https://code.google.com/p/Selenium/wiki/Grid2
 # SEL_RELEASE_TIMEOUT_SECS

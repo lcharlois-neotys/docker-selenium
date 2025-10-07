@@ -17,13 +17,13 @@ Either start with `docker-compose ... scale` as shown in below example or you ca
 You should replace `mock` with your web service under test within the [docker-compose-host.yml][] file..
 
     export NODES=3
-    docker-compose -p grid scale mock=1 hub=1 chrome=${NODES} firefox=${NODES}
+    docker-compose -p grid scale mock=1 hub=1 Chrome=${NODES} firefox=${NODES}
 
 Wait until the grid starts properly before starting the tests _(Optional but recommended)_
 
     docker exec grid_hub_1 wait_all_done 30s
     for ((i=1; i<=${NODES}; i++)); do
-      docker-compose -p grid exec -T --index=$i chrome wait_all_done 30s
+      docker-compose -p grid exec -T --index=$i Chrome wait_all_done 30s
       docker-compose -p grid exec -T --index=$i firefox wait_all_done 30s
     done
 

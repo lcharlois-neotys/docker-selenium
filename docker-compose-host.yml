@@ -14,7 +14,7 @@ services:
       - CHROME=false
       - FIREFOX=false
 
-  chrome:
+  Chrome:
     image: elgalu/Selenium
     network_mode: host
     volumes:

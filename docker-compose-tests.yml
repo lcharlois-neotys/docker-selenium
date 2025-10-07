@@ -2,7 +2,7 @@
 #
 # Usage:
 #  docker-compose -p grid up --force-recreate
-#  docker-compose -p grid scale mock=1 hub=1 chrome=3 firefox=3
+#  docker-compose -p grid scale mock=1 hub=1 Chrome=3 firefox=3
 Version: '2.1'
 
 services:
@@ -31,7 +31,7 @@ services:
       - FIREFOX=false
       - MOCK_SERVER_HOST=mock
 
-  chrome:
+  Chrome:
     image: elgalu/Selenium
     depends_on:
       - hub

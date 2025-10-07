@@ -1,9 +1,9 @@
-# The purpose of this -scales example is to run 1 hub, N chromes, N firefox
+# The purpose of this -scales example is to run 1 hub, N Chromes, N firefox
 #
 # Usage:
 #  docker-compose -f docker-compose-scales.yml -p grid up --force-recreate
 # How to scale it:
-#  docker-compose -f docker-compose-scales.yml -p grid scale hub=1 chrome=2 firefox=1
+#  docker-compose -f docker-compose-scales.yml -p grid scale hub=1 Chrome=2 firefox=1
 Version: '3'
 
 services:
@@ -21,7 +21,7 @@ services:
       - CHROME=false
       - FIREFOX=false
 
-  chrome:
+  Chrome:
     image: elgalu/Selenium
     depends_on:
       - hub

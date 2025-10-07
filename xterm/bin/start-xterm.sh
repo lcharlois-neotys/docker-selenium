@@ -23,7 +23,7 @@ stop_them_all () {
   # First stop video recording because it needs some time to flush it
   supervisorctl -c /etc/supervisor/supervisord.conf stop video-rec || true
   supervisorctl -c /etc/supervisor/supervisord.conf stop Selenium-node-firefox || true
-  supervisorctl -c /etc/supervisor/supervisord.conf stop Selenium-node-chrome || true
+  supervisorctl -c /etc/supervisor/supervisord.conf stop Selenium-node-Chrome || true
   supervisorctl -c /etc/supervisor/supervisord.conf stop Selenium-multinode || true
   supervisorctl -c /etc/supervisor/supervisord.conf stop Selenium-hub || true
   supervisorctl -c /etc/supervisor/supervisord.conf stop novnc || true
@@ -65,12 +65,12 @@ if [ "${ZALENIUM}" != "true" ]; then
     shutdown "Failed while waiting for Selenium hub to start!"
 fi
 
-timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-node-chrome.sh || \
-  shutdown "Failed while waiting for Selenium node chrome to start!"
+timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-node-Chrome.sh || \
+  shutdown "Failed while waiting for Selenium node Chrome to start!"
 timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-node-firefox.sh || \
   shutdown "Failed while waiting for Selenium node firefox to start!"
 timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-multinode.sh || \
-  shutdown "Failed while waiting for Selenium multi-node chrome & firefox to start!"
+  shutdown "Failed while waiting for Selenium multi-node Chrome & firefox to start!"
 
 timeout --foreground ${WAIT_TIMEOUT} wait-xmanager.sh || \
   shutdown "Failed while waiting for XManager to start!"

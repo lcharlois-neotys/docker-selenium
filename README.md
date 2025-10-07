@@ -9,12 +9,12 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/elgalu/Selenium.svg)](https://hub.docker.com/r/elgalu/Selenium/tags/)
 [![Docker](https://images.microbadger.com/badges/Version/elgalu/Selenium.svg)](https://microbadger.com/images/elgalu/Selenium "Docker Badge")
 
-* Selenium server grid with 2 nodes (chrome & firefox)
+* Selenium server grid with 2 nodes (Chrome & firefox)
 * mp4 video recording
 * VNC access (useful for debugging the container)
-* google-chrome-stable
-* google-chrome-beta: no longer provided but [can still be found here][2.47.1m]
-* google-chrome-unstable: no longer provided but [can still be found here][2.47.1m]
+* google-Chrome-stable
+* google-Chrome-beta: no longer provided but [can still be found here][2.47.1m]
+* google-Chrome-unstable: no longer provided but [can still be found here][2.47.1m]
 * firefox stable latest
 * firefox stable [last 18 Versions can be found here][2.47.1m]
 * fluxbox (openbox window manager can still be found [here](https://github.com/elgalu/docker-Selenium/releases/tag/3.0.1c))
@@ -121,7 +121,7 @@ If you want to limit yourself to this project, you still can. There are some way
 1. The recommended way is via [docker-compose](./docs/docker-compose.md) and you should replace `mock` with your web service under test within the [docker-compose-tests.yml][] file.
 
         docker-compose -f docker-compose-tests.yml -p grid up --force-recreate
-        docker-compose -f docker-compose-tests.yml -p grid scale mock=1 hub=1 chrome=3 firefox=3
+        docker-compose -f docker-compose-tests.yml -p grid scale mock=1 hub=1 Chrome=3 firefox=3
 
 1. The _(not recommended)_ way is by increasing `MAX_INSTANCES` and `MAX_SESSIONS` which now [defaults](https://github.com/elgalu/docker-Selenium/blob/2.53.1a/Dockerfile#L967) to 1.
 
@@ -263,8 +263,8 @@ The error comes along with this message while starting Chrome:
 In Protrator
 
     capabilities: {
-      browserName: 'chrome',
-      chromeOptions: {
+      browserName: 'Chrome',
+      ChromeOptions: {
         args: ['--no-sandbox'],
       },
     },
@@ -384,7 +384,7 @@ Full example using `--net=host` and `--pid=host` but for this to work in OSX you
 ## Who is using docker-Selenium?
 
 * [Zalando](https://tech.zalando.com/blog/)
-* [Shoov](http://www.gizra.com/content/phantomjs-chrome-docker-Selenium-standalone/)
+* [Shoov](http://www.gizra.com/content/phantomjs-Chrome-docker-Selenium-standalone/)
 * [smaato](http://blog.smaato.com/automated-end-to-end-testing-with-protractor-docker-jenkins)
 * [Algolia](https://github.com/algolia/instantsearch.js/#functional-tests)
 * [Nvidia](https://twitter.com/nvidia)
@@ -403,8 +403,8 @@ Powered by Supervisor, the container leaves many logs;
     /var/log/cont/docker-Selenium-status.log
     /var/log/cont/Selenium-hub-stderr.log
     /var/log/cont/Selenium-hub-stdout.log
-    /var/log/cont/Selenium-node-chrome-stderr.log
-    /var/log/cont/Selenium-node-chrome-stdout.log
+    /var/log/cont/Selenium-node-Chrome-stderr.log
+    /var/log/cont/Selenium-node-Chrome-stdout.log
     /var/log/cont/Selenium-node-firefox-stderr.log
     /var/log/cont/Selenium-node-firefox-stdout.log
     /var/log/cont/supervisord.log

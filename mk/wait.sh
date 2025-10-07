@@ -31,15 +31,15 @@ if ! docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} \
 fi
 echo "Hub is ready..."
 
-for i in $(seq 1 ${chrome}); do
+for i in $(seq 1 ${Chrome}); do
   if ! docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} \
-        exec --index ${i} chrome wait_all_done ${WAIT_ALL_DONE} \
-        >./mk/chrome_${i}.log; then
-    docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} logs chrome
+        exec --index ${i} Chrome wait_all_done ${WAIT_ALL_DONE} \
+        >./mk/Chrome_${i}.log; then
+    docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} logs Chrome
     docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJ_NAME} \
-        exec --index ${i} chrome errors || true
-    cat ./mk/chrome_${i}.log 1>&2
-    die "Failed to start Node chrome ${i}"
+        exec --index ${i} Chrome errors || true
+    cat ./mk/Chrome_${i}.log 1>&2
+    die "Failed to start Node Chrome ${i}"
   fi
   [ "${i}" = "1" ] && echo "Chrome is ready..."
 done

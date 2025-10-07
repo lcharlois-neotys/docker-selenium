@@ -23,14 +23,14 @@ Make sure to [setup](#setup) first.
 ### Run
 Run specifying how many nodes you need to run your tests.
 
-    make chrome=2 firefox=2
+    make Chrome=2 firefox=2
 
 The idea of having *N* Chrome nodes and *N* Firefox nodes is to be able to run tests in parallel. Note *N* is `2` in this arbitrary example.
 
 ### VNC
 This will open the VNC viewer.
 
-    make see browser=chrome node=1
+    make see browser=Chrome node=1
     make see browser=firefox node=1
 
 ### Test
@@ -42,7 +42,7 @@ The best way is to run your tests inside your web application under test, in thi
 ### Videos
 Gather the videos artifacts easily
 
-    export chrome=2 firefox=2
+    export Chrome=2 firefox=2
     make videos
 
 ### Cleanup

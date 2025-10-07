@@ -1,4 +1,4 @@
-# The purpose of this `docker-compose.yml` example is to run 1 hub, 1 chrome, 1 firefox
+# The purpose of this `docker-compose.yml` example is to run 1 hub, 1 Chrome, 1 firefox
 # i.e. this example doesn't scale, but there is another file for that: docker-compose-scales.yml
 # i.e. this example doesn't support `docker-compose scale`
 #
@@ -23,7 +23,7 @@ services:
       - CHROME=false
       - FIREFOX=false
 
-  chrome:
+  Chrome:
     image: elgalu/Selenium
     depends_on:
       - hub

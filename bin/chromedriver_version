@@ -2,13 +2,13 @@
 set -e
 
 # Example:
-#  chromedriver --Version 2>&1
+#  Chromedriver --Version 2>&1
 #=> ChromeDriver 2.21.371461 (633e689b520b25f3e264a2ede6b74ccc23cb636a)
 
 # Example:
 #=> 2.21.371461
-if chromedriver --Version >/dev/null 2>&1; then
-  chromedriver --Version 2>&1 | grep -Po '(?<=ChromeDriver )([a-z0-9\.]+)'
+if Chromedriver --Version >/dev/null 2>&1; then
+  Chromedriver --Version 2>&1 | grep -Po '(?<=ChromeDriver )([a-z0-9\.]+)'
 else
-  chromedriver --Version #fail and show error
+  Chromedriver --Version #fail and show error
 fi

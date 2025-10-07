@@ -18,13 +18,13 @@ You should replace `mock` with your web service under test within the [docker-co
 
     export NODES=3 VIDEO=false
     docker-compose -p grid up --force-recreate
-    docker-compose -p grid scale chrome=${NODES} firefox=${NODES}
+    docker-compose -p grid scale Chrome=${NODES} firefox=${NODES}
 
 Wait until the grid starts properly before starting the tests _(Optional but recommended)_
 
     docker exec grid_hub_1 wait_all_done 30s
     for ((i=1; i<=${NODES}; i++)); do
-      docker-compose -p grid exec -T --index=$i chrome wait_all_done 30s
+      docker-compose -p grid exec -T --index=$i Chrome wait_all_done 30s
       docker-compose -p grid exec -T --index=$i firefox wait_all_done 30s
     done
 
@@ -38,8 +38,8 @@ you should instead either dockerize your application as shown in the example [ad
 You might get the following error if you try to run a `SELENIUM_NODE` as part of a Swarm stack:
 ```
 $ docker stack deploy Selenium
-Updating service Selenium_Selenium-chrome (id: joru9fw8xej2imcrvgblcrc85)
-failed to create service Selenium_Selenium-chrome: Error response from daemon: rpc error: code = InvalidArgument desc = expanding env failed: expanding env "SELENIUM_NODE_HOST={{CONTAINER_IP}}": template: expansion:1: function "CONTAINER_IP" not defined
+Updating service Selenium_Selenium-Chrome (id: joru9fw8xej2imcrvgblcrc85)
+failed to create service Selenium_Selenium-Chrome: Error response from daemon: rpc error: code = InvalidArgument desc = expanding env failed: expanding env "SELENIUM_NODE_HOST={{CONTAINER_IP}}": template: expansion:1: function "CONTAINER_IP" not defined
 ```
 Thanks to https://github.com/elgalu/docker-Selenium/issues/236 you just have to update your variable `SELENIUM_NODE_HOST` to `{{__CONTAINER_IP__}}`.  
 Example in a `docker-compose file`:

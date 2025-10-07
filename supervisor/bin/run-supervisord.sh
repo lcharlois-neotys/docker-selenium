@@ -79,13 +79,13 @@ SUPERVISOR_PID=$!
 
 if [ "${DEBUG}" != "false" ]; then
   # Make sure all logs files are there so we can tail them
-  touch /var/log/cont/chrome_browser.log
+  touch /var/log/cont/Chrome_browser.log
   touch /var/log/cont/docker-Selenium-status.log
   touch /var/log/cont/firefox_browser.log
   touch /var/log/cont/fluxbox-tryouts-stderr.log
   touch /var/log/cont/fluxbox-tryouts-stdout.log
-  touch /var/log/cont/Selenium-node-chrome-stderr.log
-  touch /var/log/cont/Selenium-node-chrome-stdout.log
+  touch /var/log/cont/Selenium-node-Chrome-stderr.log
+  touch /var/log/cont/Selenium-node-Chrome-stdout.log
   touch /var/log/cont/Selenium-node-firefox-stderr.log
   touch /var/log/cont/Selenium-node-firefox-stdout.log
   touch /var/log/cont/supervisord.log

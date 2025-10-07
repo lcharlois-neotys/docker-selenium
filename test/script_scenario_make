@@ -12,12 +12,12 @@ export TESTING_MAKE="true" \
        VNC_FROM_PORT="5010" VNC_TO_PORT="5030"
 
 if [ "${CI}" = "true" ]; then
-  make setup compose chrome=2 firefox=1
+  make setup compose Chrome=2 firefox=1
 else
-  make setup compose chrome=2 firefox=1
-  make scale chrome=2 firefox=2
+  make setup compose Chrome=2 firefox=1
+  make scale Chrome=2 firefox=2
   # also has a real display so we can "see"
-  make see browser=chrome node=1
+  make see browser=Chrome node=1
 fi
 
 make wait
@@ -55,7 +55,7 @@ if [ "${GIT_TAG_OR_BRANCH}" != "" ]; then
   if [ "${CI}" = "true" ]; then
     make install_vnc install_wmctrl
   fi
-  # Test default 1 chrome 1 firefox case
+  # Test default 1 Chrome 1 firefox case
   make
   make wait
   make test

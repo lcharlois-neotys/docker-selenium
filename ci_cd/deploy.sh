@@ -155,7 +155,7 @@ git_diff_add_commit() {
 
 gen_and_cp_capabilities_and_png() {
   docker exec grid generate_capabilities_json > capabilities.json
-  docker exec -t grid python_test chrome true
+  docker exec -t grid python_test Chrome true
   docker cp grid:/test/console.png ./images/grid3_console.png
 }
 
@@ -219,13 +219,13 @@ github_release_from_LATEST_RELEASE() {
   rm LATEST_RELEASE.md
   mv temp.md LATEST_RELEASE.md
 
-  # We need to gather the chrome.deb artifact to include it in the release
-  CHROME_VERSION=$(docker exec grid chrome_stable_Version) \
+  # We need to gather the Chrome.deb artifact to include it in the release
+  CHROME_VERSION=$(docker exec grid Chrome_stable_Version) \
     || die "while trying to get CHROME_VERSION"
 
-  CHROME_DEB_FILE_NAME="google-chrome-stable_${CHROME_VERSION}_amd64"
+  CHROME_DEB_FILE_NAME="google-Chrome-stable_${CHROME_VERSION}_amd64"
   wget -nv -O "${CHROME_DEB_FILE_NAME}.deb" \
-    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    "https://dl.google.com/linux/direct/google-Chrome-stable_current_amd64.deb"
 
   md5sum ${CHROME_DEB_FILE_NAME}.deb > ${CHROME_DEB_FILE_NAME}.md5
   shasum ${CHROME_DEB_FILE_NAME}.deb > ${CHROME_DEB_FILE_NAME}.sha
@@ -380,16 +380,16 @@ rm -f uname_rm.log
 TBD_DATE=$(date +%F) \
   || die "while trying to get TBD_DATE"
 
-TBD_CHROME_STABLE=$(docker exec grid chrome_stable_Version) \
+TBD_CHROME_STABLE=$(docker exec grid Chrome_stable_Version) \
   || die "while trying to get TBD_CHROME_STABLE"
 
-TBD_CHROME_DRIVER=$(docker exec grid chromedriver_Version) \
+TBD_CHROME_DRIVER=$(docker exec grid Chromedriver_Version) \
   || die "while trying to get TBD_CHROME_DRIVER"
 
 TBD_GECKO_DRIVER=$(docker exec grid geckodriver_Version) \
   || die "while trying to get TBD_GECKO_DRIVER"
 
-TBD_CHROMEDRIVER_COMMIT=$(docker exec grid chromedriver_commit_Version) \
+TBD_CHROMEDRIVER_COMMIT=$(docker exec grid Chromedriver_commit_Version) \
   || die "while trying to get TBD_CHROMEDRIVER_COMMIT"
 
 TBD_FIREFOX_VERSION=$(docker exec grid firefox_Version) \

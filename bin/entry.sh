@@ -98,8 +98,8 @@ export FIREFOX_DEST_BIN="/usr/bin/firefox"
 export DOSEL_VERSION=$(cat VERSION)
 export FIREFOX_VERSION=$(firefox_Version)
 # CHROME_FLAVOR would allow to have separate installations for stable, beta, unstable
-export CHROME_PATH="/usr/bin/google-chrome-${CHROME_FLAVOR}"
-export CHROME_VERSION=$(chrome_${CHROME_FLAVOR}_Version)
+export CHROME_PATH="/usr/bin/google-Chrome-${CHROME_FLAVOR}"
+export CHROME_VERSION=$(Chrome_${CHROME_FLAVOR}_Version)
 
 echo "-- INFO: Docker Img. Version: ${DOSEL_VERSION}"
 echo "-- INFO: Chrome..... Version: ${CHROME_VERSION}"
@@ -214,7 +214,7 @@ if [ "${MULTINODE}" = "true" ]; then
 fi
 
 if [ "${CHROME}" = "true" ]; then
-  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-node-chrome"
+  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-node-Chrome"
 fi
 
 if [ "${FIREFOX}" = "true" ]; then
@@ -234,9 +234,9 @@ export TZ=$(echo ${TZ} | sed "s/^\([\"']\)\(.*\)\1\$/\2/g")
 echo "webdriver.log.file has been discontinued." > "${LOGS_DIR}/firefox_browser.log"
 echo "Please send us a PR if you know how to set the path for the Firefox browser logs." >> "${LOGS_DIR}/firefox_browser.log"
 
-echo "Setting --user-data-dir=/home/seluser/chrome-user-data-dir" > "${LOGS_DIR}/chrome_browser.log"
-echo "breaks the ability of clients to set Chrome options via the capabilities."   >> "${LOGS_DIR}/chrome_browser.log"
-echo "Please send us a PR if you know how to set the path for the Firefox browser logs." >> "${LOGS_DIR}/chrome_browser.log"
+echo "Setting --user-data-dir=/home/seluser/Chrome-user-data-dir" > "${LOGS_DIR}/Chrome_browser.log"
+echo "breaks the ability of clients to set Chrome options via the capabilities."   >> "${LOGS_DIR}/Chrome_browser.log"
+echo "Please send us a PR if you know how to set the path for the Firefox browser logs." >> "${LOGS_DIR}/Chrome_browser.log"
 # When running for Zalenium prepare certain customizations
 if [ "${ZALENIUM}" == "true" ]; then
   # Set proper desktop background
@@ -293,9 +293,9 @@ export VIDEO_LOG_FILE="${LOGS_DIR}/video-rec-stdout.log"
 export VIDEO_PIDFILE="${RUN_DIR}/video.pid"
 if [ "${VIDEO_FILE_NAME}" = "" ]; then
   export VIDEO_FILE_NAME="vid"
-  [ "${CHROME}" = "true" ] && export VIDEO_FILE_NAME="${VIDEO_FILE_NAME}_chrome_${SELENIUM_NODE_CH_PORT}"
+  [ "${CHROME}" = "true" ] && export VIDEO_FILE_NAME="${VIDEO_FILE_NAME}_Chrome_${SELENIUM_NODE_CH_PORT}"
   [ "${FIREFOX}" = "true" ] && export VIDEO_FILE_NAME="${VIDEO_FILE_NAME}_firefox_${SELENIUM_NODE_FF_PORT}"
-  [ "${MULTINODE}" = "true" ] && export VIDEO_FILE_NAME="${VIDEO_FILE_NAME}_chrome_or_firefox_${SELENIUM_MULTINODE_PORT}"
+  [ "${MULTINODE}" = "true" ] && export VIDEO_FILE_NAME="${VIDEO_FILE_NAME}_Chrome_or_firefox_${SELENIUM_MULTINODE_PORT}"
 fi
 export VIDEO_PATH="${VIDEOS_DIR}/${VIDEO_FILE_NAME}.${VIDEO_FILE_EXTENSION}"
 echo "${VIDEO_LOG_FILE}" > VIDEO_LOG_FILE
@@ -470,7 +470,7 @@ fi
 # So can be consulted later on with:
 #  docker exec grid cat HUB_PORT #=> 24444
 #  docker exec grid cat DISPLAY  #=> :41
-#  docker exec Selenium_chrome_1 cat FF_PORT #=> 44023
+#  docker exec Selenium_Chrome_1 cat FF_PORT #=> 44023
 echo "${SELENIUM_HUB_PORT}" > SELENIUM_HUB_PORT
 echo "${SELENIUM_HUB_PORT}" > HUB_PORT
 echo "${SELENIUM_NODE_CH_PORT}" > SELENIUM_NODE_CH_PORT

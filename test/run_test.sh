@@ -10,7 +10,7 @@ if [ "${VIDEO}" = "true" ]; then
   mv /videos/* /test/videos/bup/
 fi
 
-Selenium_test chrome
+Selenium_test Chrome
 Selenium_test firefox
 Selenium_test mobile_emulation
 

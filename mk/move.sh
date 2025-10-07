@@ -23,7 +23,7 @@ DISP="$(docker exec ${COMPOSE_PROJ_NAME}_${browser}_${node} cat DISPLAY)"
 CONT_HOSTNAME=$(docker exec ${COMPOSE_PROJ_NAME}_${browser}_${node} hostname)
 WIN_TITLE="${CONT_HOSTNAME}${DISP} - VNC Viewer"
 
-if [ "${browser}" = "chrome" ] && [ "${node}" = "1" ]; then
+if [ "${browser}" = "Chrome" ] && [ "${node}" = "1" ]; then
   # NorthWest(1)0,0
   set -x && wmctrl -r "${WIN_TITLE}" -e 1,0,0,-1,-1
 elif [ "${browser}" = "firefox" ] && [ "${node}" = "1" ]; then

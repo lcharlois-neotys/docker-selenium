@@ -81,11 +81,11 @@ See logs
 
     SSHCMD="-o StrictHostKeyChecking=no -q -P 2222 application@localhost"
     mkdir -p binaries && cd binaries
-    scp ${SSHCMD}:/home/application/chrome-deb/google*.deb .
+    scp ${SSHCMD}:/home/application/Chrome-deb/google*.deb .
 
-List chrome Versions via docker exec
+List Chrome Versions via docker exec
 
-    docker exec -ti grid bash -c "ls -lah /home/application/chrome-deb/"
+    docker exec -ti grid bash -c "ls -lah /home/application/Chrome-deb/"
 
 List firefox Versions via docker exe
 
@@ -164,7 +164,7 @@ How to connect through vnc (need a vnc client)
 
 How to run ui:tests remotely on server-Selenium.local instead of your laptop.
 
-    grunt ui:remote-test --browser=chrome --SeleniumUrl="http://server-Selenium.local:{{SeleniumPort}}/wd/hub" --appHost={{yourLaptopIPAddr}}
+    grunt ui:remote-test --browser=Chrome --SeleniumUrl="http://server-Selenium.local:{{SeleniumPort}}/wd/hub" --appHost={{yourLaptopIPAddr}}
 
 Note you may need to open firewall ports
 
@@ -179,8 +179,8 @@ Check it works
 
 ## Chrome options
     capabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
+        browserName: 'Chrome',
+        ChromeOptions: {
             args: [
                 '--disable-gpu',
                 '--disable-impl-side-painting',
@@ -193,16 +193,16 @@ Check it works
         },
     },
 
-## Some stuff that didn't help solve the chrome crashed issue
+## Some stuff that didn't help solve the Chrome crashed issue
 Dockerfile
 
     # Disable the SUID sandbox so that Chrome can launch without being in a privileged container.
-    # One unfortunate side effect is that `google-chrome --help` will no longer work.
+    # One unfortunate side effect is that `google-Chrome --help` will no longer work.
     RUN dpkg-divert --add --rename --divert \
-          /opt/google/chrome/google-chrome.real /opt/google/chrome/google-chrome \
-      && echo "#!/bin/bash\nexec /opt/google/chrome/google-chrome.real --disable-setuid-sandbox \"\$@\"" \
-          > /opt/google/chrome/google-chrome \
-      && chmod 755 /opt/google/chrome/google-chrome
+          /opt/google/Chrome/google-Chrome.real /opt/google/Chrome/google-Chrome \
+      && echo "#!/bin/bash\nexec /opt/google/Chrome/google-Chrome.real --disable-setuid-sandbox \"\$@\"" \
+          > /opt/google/Chrome/google-Chrome \
+      && chmod 755 /opt/google/Chrome/google-Chrome
 
     #=========================
     # Install Xpra and Xephyr
@@ -275,20 +275,20 @@ TODO fix lightdm Xauthority issue when using startx instead of openbox-session o
     startx -- $DISPLAY 2>&1 | tee $XMANAGER_LOG &
     XSESSION_PID=$!
 
-Note sometimes chrome fails with:
+Note sometimes Chrome fails with:
 session deleted because of page crash from tab crashed
 "session deleted because of page crash" "from tab crashed"
 reported as tmux related:
   https://github.com/angular/protractor/issues/731
 reported to be fixed with --disable-impl-side-painting:
-  https://code.google.com/p/chromedriver/issues/detail?id=732#c19
+  https://code.google.com/p/Chromedriver/issues/detail?id=732#c19
 
 Protractor config example
 Update: doesn't fix the issue, see: https://github.com/elgalu/docker-Selenium/issues/20
 
     capabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
+        browserName: 'Chrome',
+        ChromeOptions: {
             args: ['--disable-impl-side-painting'],
         },
     },
@@ -436,7 +436,7 @@ echo $REM_TUN1_PID $REM_TUN2_PID $REM_TUN3_PID \
     $REM_TUN4_PID $LOC_TUN_SELE_PID $LOC_TUN_VNC_PID
 # Use the container as if Selenium and VNC were running locally
 # thanks to ssh -L port FWD
-google-chrome-stable \
+google-Chrome-stable \
     "http://localhost:${FREE_SELE_PORT}/wd/hub/static/resource/hub.html"
 vncv localhost:${FREE_VNC_PORT} -Scaling=70% &
 # Stop all the things after your tests are done
@@ -485,7 +485,7 @@ If you also want windows manager support, i.e. want to `make move` _(optional bu
 
 ## Binaries
 
-    cd binaries && wget -O stable_updates.html "http://googlechromereleases.blogspot.de/search/label/Stable%20updates"
+    cd binaries && wget -O stable_updates.html "http://googleChromereleases.blogspot.de/search/label/Stable%20updates"
     VER=$(grep -Po '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)' stable_updates.html | head -1)
     rm -f stable_updates.html && cd ..
 
@@ -530,10 +530,10 @@ https://github.com/SeleniumHQ/Selenium/commit/40a5d80e995071fb85f86e70e15e4b96cc
 Outside of the running tests.
 
 ### Chrome artifact
-Keep certain bins if chrome Version changed for example:
+Keep certain bins if Chrome Version changed for example:
 
-    cd ~/tmp_binaries && VER="62.0.3202.75" && NAME="google-chrome-stable_${VER}_amd64" && echo ${NAME}
-    wget -nv --show-progress -O ${NAME}.deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    cd ~/tmp_binaries && VER="62.0.3202.75" && NAME="google-Chrome-stable_${VER}_amd64" && echo ${NAME}
+    wget -nv --show-progress -O ${NAME}.deb "https://dl.google.com/linux/direct/google-Chrome-stable_current_amd64.deb"
     md5sum ${NAME}.deb > ${NAME}.md5 && shasum ${NAME}.deb > ${NAME}.sha && cp ${NAME}.md5 ${NAME}.sha ~/dosel/binaries
 
 ## Docker push from Travis CI

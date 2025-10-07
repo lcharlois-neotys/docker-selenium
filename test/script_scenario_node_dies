@@ -67,7 +67,7 @@ docker exec mynodes errors || true
 docker logs mynodes
 
 # Basic checkup
-docker exec -t mynodes Selenium_test chrome
+docker exec -t mynodes Selenium_test Chrome
 docker exec mynodes errors || true
 
 # https://github.com/SeleniumHQ/Selenium/issues/2852
@@ -172,7 +172,7 @@ docker exec mynodes errors || true
 docker logs mynodes
 
 # Basic checkup on both browsers (on the same node)
-docker exec -t mynodes Selenium_test chrome &
+docker exec -t mynodes Selenium_test Chrome &
 docker exec -t mynodes Selenium_test firefox &
 wait
 docker exec mynodes errors || true

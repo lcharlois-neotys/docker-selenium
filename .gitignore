@@ -15,9 +15,9 @@ bats/
 compose_down.log
 docker-pull.log
 hub_1.log
-chrome*.log
+Chrome*.log
 firefox*.log
-stop_video_chrome*.log
+stop_video_Chrome*.log
 stop_video_firefox*.log
 VNC-*-Linux-x64-DEB.tar.gz
 VNC-Viewer-*-Linux-x64.deb

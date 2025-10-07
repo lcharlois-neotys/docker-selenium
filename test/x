@@ -20,12 +20,12 @@ from Selenium.common.exceptions import NoSuchElementException
 
 import argparse
 parser = argparse.ArgumentParser(description='Perform some basic Selenium tests.')
-parser.add_argument('browser', choices=['chrome', 'firefox'], nargs='?', default='chrome',
+parser.add_argument('browser', choices=['Chrome', 'firefox'], nargs='?', default='Chrome',
                     help='in which browser to test')
 args = parser.parse_args()
 
 # http://Selenium-python.readthedocs.org/en/latest/api.html
-if args.browser == 'chrome':
+if args.browser == 'Chrome':
     caps = DesiredCapabilities.CHROME
 elif args.browser == 'firefox':
     caps = DesiredCapabilities.FIREFOX

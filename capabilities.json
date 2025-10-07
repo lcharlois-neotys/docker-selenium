@@ -1,7 +1,7 @@
 {
   "caps": [
     {
-      "BROWSER_NAME": "chrome",
+      "BROWSER_NAME": "Chrome",
       "VERSION": "91.0.4472.77",
       "PLATFORM": "LINUX"
     },

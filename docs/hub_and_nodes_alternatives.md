@@ -51,7 +51,7 @@ The placeholder `{{CONTAINER_IP}}` will be turned into the IP address of the con
       --shm-size=1g \
       elgalu/Selenium
 
-![docker-Selenium-chrome-node](../images/chrome_grid_console.png)
+![docker-Selenium-Chrome-node](../images/Chrome_grid_console.png)
 
     docker run -d --name=node2_ch --net=Seleniums \
       -e GRID=false -e CHROME=true -e FIREFOX=false \
