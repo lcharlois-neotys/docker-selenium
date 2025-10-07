@@ -65,14 +65,14 @@ sleep ${SLEEP_TIME}
 # Tests can run anywere, in the hub, in the host, doesn't matter
 for i in $(seq 1 ${PARAL_TESTS}); do
   # Need to sleep a bit between tests to avoid
-  #  https://github.com/SeleniumHQ/selenium/issues/2442
+  #  https://github.com/SeleniumHQ/Selenium/issues/2442
   sleep ${PAUSE_SECS_BETWEEN_RUN_TEST}
   # Docker-ompose exec is giving me error:
   #  in dockerpty/io.py", line 42, in set_blocking
   #  ValueError: file descriptor cannot be a negative integer (-1)
   # docker-compose -f ${COMPOSE_FILE} -p grid exec --index 1 hub run_test &
-  docker-compose -f ${COMPOSE_FILE} -p grid exec --index=1 hub selenium_test chrome &
-  docker-compose -f ${COMPOSE_FILE} -p grid exec --index=1 hub selenium_test firefox &
+  docker-compose -f ${COMPOSE_FILE} -p grid exec --index=1 hub Selenium_test chrome &
+  docker-compose -f ${COMPOSE_FILE} -p grid exec --index=1 hub Selenium_test firefox &
 done
 
 # sleep a moment to let the UI tests start

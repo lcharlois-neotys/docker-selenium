@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Dependencies
-#  pip install selenium==3.3.1
+#  pip install Selenium==3.3.1
 #  pip install retrying>=1.3.3
 # Usage
 #  curl -sSL https://raw.github.com/dosel/t/i/x | python
@@ -12,19 +12,19 @@ import datetime
 from retrying import retry
 
 # Import the Selenium 2 namespace (aka "webdriver")
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from Selenium import webdriver
+from Selenium.webdriver.common.keys import Keys
+from Selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from Selenium.webdriver.common.by import By
+from Selenium.common.exceptions import NoSuchElementException
 
 import argparse
-parser = argparse.ArgumentParser(description='Perform some basic selenium tests.')
+parser = argparse.ArgumentParser(description='Perform some basic Selenium tests.')
 parser.add_argument('browser', choices=['chrome', 'firefox'], nargs='?', default='chrome',
                     help='in which browser to test')
 args = parser.parse_args()
 
-# http://selenium-python.readthedocs.org/en/latest/api.html
+# http://Selenium-python.readthedocs.org/en/latest/api.html
 if args.browser == 'chrome':
     caps = DesiredCapabilities.CHROME
 elif args.browser == 'firefox':
@@ -34,19 +34,19 @@ else:
 
 msleep = float( os.environ.get('TEST_SLEEPS', '0.1') )
 
-# http://selenium-python.readthedocs.io/api.html#desired-capabilities
+# http://Selenium-python.readthedocs.io/api.html#desired-capabilities
 # Create a desired capabilities object as a starting point.
 browserName = args.browser
 browserVersion = os.environ.get('CAPS_BROWSER_VERSION', '')
 
-# http://selenium-python.readthedocs.org/en/latest/api.html
+# http://Selenium-python.readthedocs.org/en/latest/api.html
 sel_proto = os.environ.get('SELENIUM_HUB_PROTO','http')
 sel_host = os.environ.get('SELENIUM_HUB_HOST','localhost')
 sel_port = os.environ.get('SELENIUM_HUB_PORT','4444')
-myselenium_base_url = "%s://%s:%s" % (sel_proto, sel_host, sel_port)
-myselenium_grid_console_url = "%s/grid/console" % (myselenium_base_url)
-myselenium_hub_url = "%s/wd/hub" % (myselenium_base_url)
-myselenium_hub_url = os.environ.get('SELENIUM_URL', myselenium_hub_url)
+mySelenium_base_url = "%s://%s:%s" % (sel_proto, sel_host, sel_port)
+mySelenium_grid_console_url = "%s/grid/console" % (mySelenium_base_url)
+mySelenium_hub_url = "%s/wd/hub" % (mySelenium_base_url)
+mySelenium_hub_url = os.environ.get('SELENIUM_URL', mySelenium_hub_url)
 
 # Group tests by `build`
 buildId = "%s%s" % (os.environ.get('JOB_NAME', ''), os.environ.get('BUILD_NUMBER', ''))
@@ -66,7 +66,7 @@ height = os.environ.get('SCREEN_HEIGHT','1600')
 # Build the capabilities
 caps = {'browserName': browserName}
 caps['platform'] = os.environ.get('CAPS_OS_PLATFORM', 'ANY')
-caps['version'] = browserVersion
+caps['Version'] = browserVersion
 # caps['tunnelIdentifier'] = os.environ.get('TUNNEL_ID', 'zalenium')
 caps['tunnel-identifier'] = os.environ.get('TUNNEL_ID', 'zalenium')
 # caps['screenResolution'] = "%sx%sx24" % (width, height)
@@ -75,15 +75,15 @@ caps['name'] = nameId
 caps['build'] = buildId
 caps['recordVideo'] = os.environ.get('VIDEO','false')
 
-# http://selenium-python.readthedocs.org/en/latest/getting-started.html#using-selenium-with-remote-webdriver
+# http://Selenium-python.readthedocs.org/en/latest/getting-started.html#using-Selenium-with-remote-webdriver
 @retry(stop_max_attempt_number=8, stop_max_delay=40100, wait_fixed=1000)
-def create_selenium_session():
-    print ("%s %s - (1%%) Will connect to selenium at %s" % (datetime.datetime.utcnow(), longId, myselenium_hub_url))
-    driver = webdriver.Remote(command_executor=myselenium_hub_url, desired_capabilities=caps)
+def create_Selenium_session():
+    print ("%s %s - (1%%) Will connect to Selenium at %s" % (datetime.datetime.utcnow(), longId, mySelenium_hub_url))
+    driver = webdriver.Remote(command_executor=mySelenium_hub_url, desired_capabilities=caps)
     # driver.implicitly_wait(4)
     return driver
 
-driver = create_selenium_session()
+driver = create_Selenium_session()
 time.sleep(msleep)
 
 def is_element_present(how, what):

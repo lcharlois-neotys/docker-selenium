@@ -45,13 +45,13 @@ docker run --name=grid_x_user -d -e VIDEO=true \
   -e CI \
   -v /dev/shm:/dev/shm \
   -u 1000060000:1000060000 \
-  selenium
+  Selenium
 
 docker logs grid_x_user
 docker attach grid_x_user &
 
 docker exec grid_x_user wait_all_done 70s
-docker exec grid_x_user versions
+docker exec grid_x_user Versions
 docker exec grid_x_user errors || true
 docker logs grid_x_user
 
@@ -85,13 +85,13 @@ docker run --name=grid_x_user -d -e VIDEO=true \
   -e CI \
   -v /dev/shm:/dev/shm \
   -u 1000060000:1000060000 \
-  selenium
+  Selenium
 
 docker logs grid_x_user
 docker attach grid_x_user &
 
 docker exec grid_x_user wait_all_done 70s
-docker exec grid_x_user versions
+docker exec grid_x_user Versions
 docker exec grid_x_user errors || true
 docker logs grid_x_user
 

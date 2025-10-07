@@ -29,7 +29,7 @@ cd /tmp/minishift
 wget -nv -O minishift.tgz \
   "https://github.com/minishift/minishift/releases/download/v1.6.0/minishift-1.6.0-linux-amd64.tgz"
 tar xzf minishift.tgz
-./minishift version
+./minishift Version
 
 sudo virt-manager
 

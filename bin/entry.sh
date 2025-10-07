@@ -58,7 +58,7 @@ fi
 
 # Workaround that might help to get dbus working in docker
 #  http://stackoverflow.com/a/38355729/511069
-#  https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-187659234
+#  https://github.com/SeleniumHQ/docker-Selenium/issues/87#issuecomment-187659234
 #  - still unclear if this helps: `-v /var/run/dbus:/var/run/dbus`
 #  - this works generates errors: DBUS_SESSION_BUS_ADDRESS="/dev/null"
 #  - this gives less erros: DBUS_SESSION_BUS_ADDRESS="unix:abstract=/dev/null"
@@ -93,13 +93,13 @@ fi
 #---------------------
 # Fix/extend ENV vars
 #---------------------
-export SELENIUM_JAR_PATH="/home/seluser/selenium-server-standalone-3.jar"
+export SELENIUM_JAR_PATH="/home/seluser/Selenium-server-standalone-3.jar"
 export FIREFOX_DEST_BIN="/usr/bin/firefox"
 export DOSEL_VERSION=$(cat VERSION)
-export FIREFOX_VERSION=$(firefox_version)
+export FIREFOX_VERSION=$(firefox_Version)
 # CHROME_FLAVOR would allow to have separate installations for stable, beta, unstable
 export CHROME_PATH="/usr/bin/google-chrome-${CHROME_FLAVOR}"
-export CHROME_VERSION=$(chrome_${CHROME_FLAVOR}_version)
+export CHROME_VERSION=$(chrome_${CHROME_FLAVOR}_Version)
 
 echo "-- INFO: Docker Img. Version: ${DOSEL_VERSION}"
 echo "-- INFO: Chrome..... Version: ${CHROME_VERSION}"
@@ -110,7 +110,7 @@ if [ "${USE_SELENIUM}" == "2" ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "!!! WARNING!!! You are using the unmaintained Selenium 2 !!!"
   echo "!!! to continue using Selenium 2 please use the proper tag:"
-  echo "!!! docker pull elgalu/selenium:2                        !!!"
+  echo "!!! docker pull elgalu/Selenium:2                        !!!"
   echo "!!!                                                      !!!"
   echo "!!! Will start with Selenium 3 anyway                    !!!"
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -186,7 +186,7 @@ if [[ ${BUILD_URL} == *"zalan.do"* ]]; then
 elif [ "${CI}" = "true" ]; then
     RANDOM_USER_GA_ID="travis"
 else
-    RANDOM_USER_GA_ID=$(cat /proc/version 2>&1 | sed -e 's/ /_/g' | sed -e 's/[()]//g' | sed -e 's/@.*_gcc_version/_gcc/g' | sed -e 's/__/_/g' | sed -e 's/Linux_version_//g' | sed -e 's/generic_build/genb/g')
+    RANDOM_USER_GA_ID=$(cat /proc/Version 2>&1 | sed -e 's/ /_/g' | sed -e 's/[()]//g' | sed -e 's/@.*_gcc_Version/_gcc/g' | sed -e 's/__/_/g' | sed -e 's/Linux_Version_//g' | sed -e 's/generic_build/genb/g')
     RANDOM_USER_GA_ID="${DOSEL_VERSION}_${RANDOM_USER_GA_ID}"
 fi
 
@@ -206,19 +206,19 @@ else
 fi
 
 if [ "${GRID}" = "true" ]; then
-  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|selenium-hub"
+  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-hub"
 fi
 
 if [ "${MULTINODE}" = "true" ]; then
-  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|selenium-multinode"
+  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-multinode"
 fi
 
 if [ "${CHROME}" = "true" ]; then
-  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|selenium-node-chrome"
+  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-node-chrome"
 fi
 
 if [ "${FIREFOX}" = "true" ]; then
-  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|selenium-node-firefox"
+  export SUPERVISOR_REQUIRED_SRV_LIST="${SUPERVISOR_REQUIRED_SRV_LIST}|Selenium-node-firefox"
 fi
 
 if [ "${SELENIUM_HUB_PORT}" = "" ]; then
@@ -229,8 +229,8 @@ fi
 # Fix extra quotes in Time zone $TZ env var
 export TZ=$(echo ${TZ} | sed "s/^\([\"']\)\(.*\)\1\$/\2/g")
 
-# https://github.com/SeleniumHQ/selenium/issues/2078#issuecomment-218320864
-# https://github.com/SeleniumHQ/selenium/blob/master/py/selenium/webdriver/firefox/firefox_binary.py#L27
+# https://github.com/SeleniumHQ/Selenium/issues/2078#issuecomment-218320864
+# https://github.com/SeleniumHQ/Selenium/blob/master/py/Selenium/webdriver/firefox/firefox_binary.py#L27
 echo "webdriver.log.file has been discontinued." > "${LOGS_DIR}/firefox_browser.log"
 echo "Please send us a PR if you know how to set the path for the Firefox browser logs." >> "${LOGS_DIR}/firefox_browser.log"
 
@@ -457,7 +457,7 @@ fi
 #-------------------------------
 # Fix small tiny 64mb shm issue
 #-------------------------------
-# https://github.com/elgalu/docker-selenium/issues/20
+# https://github.com/elgalu/docker-Selenium/issues/20
 if [ "${SHM_TRY_MOUNT_UNMOUNT}" = "true" ] && [ "${WE_HAVE_SUDO_ACCESS}" == "true" ]; then
   sudo umount /dev/shm || true
   sudo mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=${SHM_SIZE} \
@@ -470,7 +470,7 @@ fi
 # So can be consulted later on with:
 #  docker exec grid cat HUB_PORT #=> 24444
 #  docker exec grid cat DISPLAY  #=> :41
-#  docker exec selenium_chrome_1 cat FF_PORT #=> 44023
+#  docker exec Selenium_chrome_1 cat FF_PORT #=> 44023
 echo "${SELENIUM_HUB_PORT}" > SELENIUM_HUB_PORT
 echo "${SELENIUM_HUB_PORT}" > HUB_PORT
 echo "${SELENIUM_NODE_CH_PORT}" > SELENIUM_NODE_CH_PORT

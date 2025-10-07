@@ -6,11 +6,11 @@
 #
 # Usage:
 #  docker-compose -p grid up --force-recreate
-version: '3'
+Version: '3'
 
 services:
   hub:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     ports:
       - 4444:4444
     volumes:
@@ -24,7 +24,7 @@ services:
       - FIREFOX=false
 
   chrome:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     ports:
@@ -50,7 +50,7 @@ services:
       - FIREFOX=false
 
   firefox:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     ports:

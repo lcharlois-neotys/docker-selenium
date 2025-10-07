@@ -1,8 +1,8 @@
-version: '2.1'
+Version: '2.1'
 
 services:
   hub:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     network_mode: host
     volumes:
       - /dev/shm:/dev/shm
@@ -15,7 +15,7 @@ services:
       - FIREFOX=false
 
   chrome:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     network_mode: host
     volumes:
       - /dev/shm:/dev/shm
@@ -28,7 +28,7 @@ services:
       - FIREFOX=false
 
   firefox:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     network_mode: host
     volumes:
       - /dev/shm:/dev/shm

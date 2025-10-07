@@ -8,7 +8,7 @@ For requirements check [README#requisites](../README.md#requisites)
 ## Usage
 Either clone this repository or download the file [docker-compose-host.yml][] using `wget`
 
-    wget -nv "https://raw.githubusercontent.com/elgalu/docker-selenium/latest/docker-compose-host.yml"
+    wget -nv "https://raw.githubusercontent.com/elgalu/docker-Selenium/latest/docker-compose-host.yml"
     mv -f docker-compose-host.yml docker-compose.yml
     docker-compose -p grid down #ensure is not already running
 
@@ -28,7 +28,7 @@ Wait until the grid starts properly before starting the tests _(Optional but rec
     done
 
 ### Test
-You can now run your tests by using the `--seleniumUrl="http://localhost:4444/wd/hub"`.
+You can now run your tests by using the `--SeleniumUrl="http://localhost:4444/wd/hub"`.
 Because we use the `network_mode: host` feature everything will run in `localhost` so is transparent to use at a networking level and you don't need to worry about it just run test web application under test in localhost, a.k.a. `127.0.0.1`
 
 ### Cleanup

@@ -6,81 +6,81 @@ So let's use some [docker user-defined networks](https://docs.docker.com/engine/
 
 ## Network
 Is better to avoid them and define your own virtual networks instead.
-We first create a docker virtual network interface called `seleniums`.
+We first create a docker virtual network interface called `Seleniums`.
 Note the same can be achieved without explicitly creating a network by using `--net:container:hub` but we will not use that technique here.
 
-    docker network create --driver bridge seleniums
+    docker network create --driver bridge Seleniums
 
 This is the diagram showing how the setup will look like:
 
 #### Diagram
 
-![diagram-selenium-hub-4-nodes](../images/grid_4_nodes_diagram_seleniums.png)
+![diagram-Selenium-hub-4-nodes](../images/grid_4_nodes_diagram_Seleniums.png)
 
 > A bridge network is useful in cases where you want to run a relatively small network on a single host.
 
 If you are looking for a more complex multi-hosts setups take a look at the docker [overlay network](https://docs.docker.com/engine/userguide/networking/dockernetworks/#an-overlay-network). An overlay network provides complete isolation for the containers across hosts.
 
 ## Hub
-Now we attach the Selenium Grid (a.k.a. Hub) to that network interface arbitrary called `seleniums`.
+Now we attach the Selenium Grid (a.k.a. Hub) to that network interface arbitrary called `Seleniums`.
 Is important to note `-e CHROME=false -e FIREFOX=false` which tells the docker image not run run default Chrome and Firefox nodes turning the container into a grid-only one.
 
-    docker run -d --name=hub --net=seleniums \
+    docker run -d --name=hub --net=Seleniums \
       -e GRID=true -e CHROME=false -e FIREFOX=false \
       -e SELENIUM_HUB_PORT=4444 -p 4444:4444 -e VNC_START=false \
-      elgalu/selenium
+      elgalu/Selenium
 
     docker exec hub wait_all_done 30s
 
 This is how it should look like so far:
 
-![docker-empty-selenium-grid](../images/empty_grid_console.png)
+![docker-empty-Selenium-grid](../images/empty_grid_console.png)
 
 ## Nodes
 Let's add some nodes
 
 ### Chrome
-Chrome will also attach to the `seleniums` network interface.
-The placeholder `{{CONTAINER_IP}}` will be turned into the IP address of the container inside the `seleniums` interface.
+Chrome will also attach to the `Seleniums` network interface.
+The placeholder `{{CONTAINER_IP}}` will be turned into the IP address of the container inside the `Seleniums` interface.
 
-    docker run -d --name=node1_ch --net=seleniums \
+    docker run -d --name=node1_ch --net=Seleniums \
       -e GRID=false -e CHROME=true -e FIREFOX=false \
       -e VNC_START=false -e PICK_ALL_RANDOM_PORTS=true \
-      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.seleniums" \
+      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.Seleniums" \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium
+      elgalu/Selenium
 
-![docker-selenium-chrome-node](../images/chrome_grid_console.png)
+![docker-Selenium-chrome-node](../images/chrome_grid_console.png)
 
-    docker run -d --name=node2_ch --net=seleniums \
+    docker run -d --name=node2_ch --net=Seleniums \
       -e GRID=false -e CHROME=true -e FIREFOX=false \
       -e VNC_START=false -e PICK_ALL_RANDOM_PORTS=true \
-      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.seleniums" \
+      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.Seleniums" \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium
+      elgalu/Selenium
 
 ### Firefox
-Firefox will also attach to the `seleniums` network interface.
+Firefox will also attach to the `Seleniums` network interface.
 
-    docker run -d --name=node3_ff --net=seleniums \
+    docker run -d --name=node3_ff --net=Seleniums \
       -e GRID=false -e CHROME=false -e FIREFOX=true \
       -e VNC_START=false -e PICK_ALL_RANDOM_PORTS=true \
-      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.seleniums" \
+      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.Seleniums" \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium
+      elgalu/Selenium
 
-![docker-selenium-firefox-node](../images/firefox_grid_console.png)
+![docker-Selenium-firefox-node](../images/firefox_grid_console.png)
 
-    docker run -d --name=node4_ff --net=seleniums \
+    docker run -d --name=node4_ff --net=Seleniums \
       -e GRID=false -e CHROME=false -e FIREFOX=true \
       -e VNC_START=false -e PICK_ALL_RANDOM_PORTS=true \
-      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.seleniums" \
+      -e SELENIUM_HUB_PORT=4444 -e SELENIUM_HUB_HOST="hub.Seleniums" \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium
+      elgalu/Selenium
 
 ### Wait
 Is convenient to wait for all the nodes to start correctly, also to catch errors before starting the tests in vane:
@@ -94,16 +94,16 @@ Is convenient to wait for all the nodes to start correctly, also to catch errors
 
 This is the final sample grid
 
-![docker-selenium-hub-4-nodes](../images/grid_4_nodes_random_ports.png)
+![docker-Selenium-hub-4-nodes](../images/grid_4_nodes_random_ports.png)
 
 This is the docker diagram of that grid
 
-![diagram-selenium-hub-4-nodes](../images/grid_4_nodes_diagram_seleniums.png)
+![diagram-Selenium-hub-4-nodes](../images/grid_4_nodes_diagram_Seleniums.png)
 
 ### Cleanup
 
     docker rm -vf hub node1_ch node2_ch node3_ff node4_ff || true
-    docker network rm seleniums || true
+    docker network rm Seleniums || true
 
 ## Differences
 The difference when using `docker network create` instead of `--net=container:hub` are some:
@@ -116,7 +116,7 @@ Legacy connection strategy specifying all ports and host addresses.
 
     docker run -d --name=hub -e GRID=true -e CHROME=false -e FIREFOX=false \
       -e SELENIUM_HUB_PORT=4444 -p 4444:4444 \
-      elgalu/selenium
+      elgalu/Selenium
 
     docker exec hub wait_all_done 30s
 
@@ -134,7 +134,7 @@ Port numbers are completely arbitrary, VNC port will be `5940` and Selenium node
       -e SELENIUM_HUB_PORT=4444 \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium && docker exec node_ch wait_all_done 30s
+      elgalu/Selenium && docker exec node_ch wait_all_done 30s
 
 The important part above is `-e GRID=false` which tells the container to be a node-only node, this this case with 2 browsers `-e CHROME=true -e FIREFOX=true` but could be just 1.
 
@@ -150,4 +150,4 @@ Port numbers are completely arbitrary, VNC port will be `5940` and Selenium node
       -e SELENIUM_HUB_PORT=4444 \
       -e SELENIUM_NODE_HOST="{{CONTAINER_IP}}" \
       --shm-size=1g \
-      elgalu/selenium && docker exec node_ff wait_all_done 30s
+      elgalu/Selenium && docker exec node_ff wait_all_done 30s

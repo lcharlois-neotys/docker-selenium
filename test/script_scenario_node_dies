@@ -26,7 +26,7 @@ set -xe
 export SELENIUM_NODE_CH_PORT=5757 \
        SELENIUM_NODE_FF_PORT=6868 \
        SELENIUM_MULTINODE_PORT=7979 \
-       SHUTDOWN_END_POINT="selenium-server/driver/?cmd=shutDownSeleniumServer"
+       SHUTDOWN_END_POINT="Selenium-server/driver/?cmd=shutDownSeleniumServer"
 
 if [ "${CI}" = "true" ]; then
   NODE_SUICIDE_WAIT_TIME=20
@@ -53,7 +53,7 @@ docker run --name=mynodes -d \
   -e SELENIUM_NODE_CH_PORT -p ${SELENIUM_NODE_CH_PORT}:${SELENIUM_NODE_CH_PORT} \
   -v /dev/shm:/dev/shm \
   --privileged \
-  selenium
+  Selenium
 
 # We need a mock service for testing
 docker run -d -t --name=grid_mock -e MOCK_SERVER_PORT \
@@ -67,10 +67,10 @@ docker exec mynodes errors || true
 docker logs mynodes
 
 # Basic checkup
-docker exec -t mynodes selenium_test chrome
+docker exec -t mynodes Selenium_test chrome
 docker exec mynodes errors || true
 
-# https://github.com/SeleniumHQ/selenium/issues/2852
+# https://github.com/SeleniumHQ/Selenium/issues/2852
 # if curl -s "http://localhost:${SELENIUM_NODE_CH_PORT}/${SHUTDOWN_END_POINT}" | grep "OKOK"; then
 if docker stop mynodes; then
   # The container should have been removed
@@ -103,7 +103,7 @@ docker run --name=mynodes -d \
   -e REMOVE_SELUSER_FROM_SUDOERS_FOR_TESTING=true \
   -e CHROME=false -e CI \
   -e SELENIUM_NODE_FF_PORT -p ${SELENIUM_NODE_FF_PORT}:${SELENIUM_NODE_FF_PORT} \
-  selenium
+  Selenium
 
 # We need a mock service for testing
 docker run -d -t --name=grid_mock -e MOCK_SERVER_PORT \
@@ -117,10 +117,10 @@ docker exec mynodes errors || true
 docker logs mynodes
 
 # Basic checkup
-docker exec -t mynodes selenium_test firefox
+docker exec -t mynodes Selenium_test firefox
 docker exec mynodes errors || true
 
-# https://github.com/SeleniumHQ/selenium/issues/2852
+# https://github.com/SeleniumHQ/Selenium/issues/2852
 # if curl -s "http://localhost:${SELENIUM_NODE_FF_PORT}/${SHUTDOWN_END_POINT}" | grep "OKOK"; then
 if docker stop mynodes; then
   # The container should have been removed
@@ -158,7 +158,7 @@ docker run --name=mynodes -d \
   -e USE_KUBERNETES=true \
   -e SELENIUM_MULTINODE_PORT \
   -p ${SELENIUM_MULTINODE_PORT}:${SELENIUM_MULTINODE_PORT} \
-  selenium
+  Selenium
 
 # We need a mock service for testing
 docker run -d -t --name=grid_mock -e MOCK_SERVER_PORT \
@@ -172,12 +172,12 @@ docker exec mynodes errors || true
 docker logs mynodes
 
 # Basic checkup on both browsers (on the same node)
-docker exec -t mynodes selenium_test chrome &
-docker exec -t mynodes selenium_test firefox &
+docker exec -t mynodes Selenium_test chrome &
+docker exec -t mynodes Selenium_test firefox &
 wait
 docker exec mynodes errors || true
 
-# https://github.com/SeleniumHQ/selenium/issues/2852
+# https://github.com/SeleniumHQ/Selenium/issues/2852
 # if curl -s "http://localhost:${SELENIUM_MULTINODE_PORT}/${SHUTDOWN_END_POINT}" | grep "OKOK"; then
 if docker stop mynodes; then
   # The container should have been removed

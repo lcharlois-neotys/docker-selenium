@@ -18,7 +18,7 @@ sudo chmod u+s /usr/local/bin/docker-machine-driver-xhyve || true
 # docker-machine stop default || true
 
 # Currently erroring:
-#  https://travis-ci.org/elgalu/docker-selenium/jobs/143358317
+#  https://travis-ci.org/elgalu/docker-Selenium/jobs/143358317
 #   com.docker.docker Incompatible CPU detected
 #   Docker requires a processor with virtualization capabilities
 # /Applications/Docker.app/Contents/MacOS/Docker &
@@ -38,12 +38,12 @@ docker-machine start
 #  https://github.com/travis-ci/travis-ci/issues/5738#issuecomment-227167082
 # docker-machine --restart || true
 # docker-machine create --driver virtualbox default || true
-# docker-machine --version
+# docker-machine --Version
 # docker-machine ls
 # eval "$(docker-machine env default)"
-docker --version
-docker-compose --version
-docker-machine version
+docker --Version
+docker-compose --Version
+docker-machine Version
 # docker-machine env default
 #=> Host does not exist: "default"
 # docker-machine create --driver virtualbox default
@@ -52,4 +52,4 @@ docker-machine version
 #=> and VBoxManage is in the path"
 eval "$(docker-machine env default)" || true
 docker run --rm -t ubuntu uname -a
-docker build -t selenium .
+docker build -t Selenium .

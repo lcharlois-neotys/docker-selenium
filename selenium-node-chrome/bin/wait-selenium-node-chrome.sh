@@ -6,7 +6,7 @@ SEL_STATUS_URL="http://${SELENIUM_NODE_HOST}:${SELENIUM_NODE_CH_PORT}/wd/hub/sta
 set -e
 
 if [ "${CHROME}" != "true" ]; then
-  echo "Won't start selenium node chrome due to CHROME env var false"
+  echo "Won't start Selenium node chrome due to CHROME env var false"
   exit 0
 fi
 
@@ -37,4 +37,4 @@ while ! curl -s "${SEL_STATUS_URL}" | sh -c "${SUCESS_CMD}"; do
   fi
 done
 
-echo "Done wait-selenium-node-chrome-${CHROME_FLAVOR}.sh"
+echo "Done wait-Selenium-node-chrome-${CHROME_FLAVOR}.sh"

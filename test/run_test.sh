@@ -10,9 +10,9 @@ if [ "${VIDEO}" = "true" ]; then
   mv /videos/* /test/videos/bup/
 fi
 
-selenium_test chrome
-selenium_test firefox
-selenium_test mobile_emulation
+Selenium_test chrome
+Selenium_test firefox
+Selenium_test mobile_emulation
 
 if [ "${VIDEO}" = "true" ]; then
   # restore backup

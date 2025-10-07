@@ -1,19 +1,19 @@
-# selenium-test [![Build Status](https://travis-ci.org/elgalu/selenium-test.svg?branch=master)](https://travis-ci.org/elgalu/selenium-test)
+# Selenium-test [![Build Status](https://travis-ci.org/elgalu/Selenium-test.svg?branch=master)](https://travis-ci.org/elgalu/Selenium-test)
 
-Hello world selenium test.
+Hello world Selenium test.
 
-If you want to see this running inside a docker container visit [selenium-test-dockerized][] or scroll down to the *Docker* section.
+If you want to see this running inside a docker container visit [Selenium-test-dockerized][] or scroll down to the *Docker* section.
 
 ## Requisistes
 Add `sudo` only if you get permission denied.
 
     pip install --upgrade -r requirements.txt
 
-It needs a selenium server, for example [docker-selenium][]
+It needs a Selenium server, for example [docker-Selenium][]
 
-    docker run -d --name=myselenium elgalu/selenium:latest
-    docker exec myselenium wait_all_done 30s
-    export SELENIUM_HUB_HOST=$(docker inspect -f='{{.NetworkSettings.IPAddress}}' myselenium)
+    docker run -d --name=mySelenium elgalu/Selenium:latest
+    docker exec mySelenium wait_all_done 30s
+    export SELENIUM_HUB_HOST=$(docker inspect -f='{{.NetworkSettings.IPAddress}}' mySelenium)
     export SELENIUM_HUB_PORT=24444
 
 ## Run
@@ -22,7 +22,7 @@ It needs a selenium server, for example [docker-selenium][]
 
 Sample output
 
-    Will connect to selenium at http://172.17.0.6:24444/wd/hub
+    Will connect to Selenium at http://172.17.0.6:24444/wd/hub
     Opening page http://www.google.com/adwords
     Current title: Google AdWords | Pay-per-Click-Onlinewerbung auf Google (PPC)
     Asserting 'Google AdWords' in driver.title
@@ -38,13 +38,13 @@ Sample output
 ## Docker
 ### Build
 
-    docker build -t elgalu/selenium-test .
+    docker build -t elgalu/Selenium-test .
 
 ### Run
 
-    export SELENIUM_HUB_HOST=$(docker inspect -f='{{.NetworkSettings.IPAddress}}' myselenium)
-    docker run --rm --name=test1 -ti -e SELENIUM_HUB_HOST elgalu/selenium-test
+    export SELENIUM_HUB_HOST=$(docker inspect -f='{{.NetworkSettings.IPAddress}}' mySelenium)
+    docker run --rm --name=test1 -ti -e SELENIUM_HUB_HOST elgalu/Selenium-test
 
 
-[selenium-test-dockerized]: https://github.com/elgalu/selenium-test-dockerized
-[docker-selenium]: https://github.com/elgalu/docker-selenium
+[Selenium-test-dockerized]: https://github.com/elgalu/Selenium-test-dockerized
+[docker-Selenium]: https://github.com/elgalu/docker-Selenium

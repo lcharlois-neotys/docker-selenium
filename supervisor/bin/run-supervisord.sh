@@ -71,7 +71,7 @@ shutdown () {
 # Run function shutdown() when this process receives a killing signal
 trap shutdown SIGHUP SIGTERM SIGINT
 
-echo -n "supervisord --version=" && supervisord --version
+echo -n "supervisord --Version=" && supervisord --Version
 
 # supervisord -c /etc/supervisor/supervisord.conf --user ${USER} --nodaemon &
 supervisord -c /etc/supervisor/supervisord.conf --nodaemon &
@@ -80,14 +80,14 @@ SUPERVISOR_PID=$!
 if [ "${DEBUG}" != "false" ]; then
   # Make sure all logs files are there so we can tail them
   touch /var/log/cont/chrome_browser.log
-  touch /var/log/cont/docker-selenium-status.log
+  touch /var/log/cont/docker-Selenium-status.log
   touch /var/log/cont/firefox_browser.log
   touch /var/log/cont/fluxbox-tryouts-stderr.log
   touch /var/log/cont/fluxbox-tryouts-stdout.log
-  touch /var/log/cont/selenium-node-chrome-stderr.log
-  touch /var/log/cont/selenium-node-chrome-stdout.log
-  touch /var/log/cont/selenium-node-firefox-stderr.log
-  touch /var/log/cont/selenium-node-firefox-stdout.log
+  touch /var/log/cont/Selenium-node-chrome-stderr.log
+  touch /var/log/cont/Selenium-node-chrome-stdout.log
+  touch /var/log/cont/Selenium-node-firefox-stderr.log
+  touch /var/log/cont/Selenium-node-firefox-stdout.log
   touch /var/log/cont/supervisord.log
   touch /var/log/cont/vnc-stderr.log
   touch /var/log/cont/vnc-stdout.log

@@ -4,11 +4,11 @@
 #  docker-compose -f docker-compose-scales.yml -p grid up --force-recreate
 # How to scale it:
 #  docker-compose -f docker-compose-scales.yml -p grid scale hub=1 chrome=2 firefox=1
-version: '3'
+Version: '3'
 
 services:
   hub:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     ports:
       - 4444:4444
     volumes:
@@ -22,7 +22,7 @@ services:
       - FIREFOX=false
 
   chrome:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     volumes:
@@ -41,7 +41,7 @@ services:
       - FIREFOX=false
 
   firefox:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     volumes:

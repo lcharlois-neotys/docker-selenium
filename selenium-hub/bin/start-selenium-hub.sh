@@ -7,10 +7,10 @@ JAVA_OPTS="$(java-dynamic-memory-opts.sh) ${JAVA_OPTS}"
 echo "INFO: JAVA_OPTS are '${JAVA_OPTS}'"
 
 # See standalone params docs at
-#  https://code.google.com/p/selenium/wiki/Grid2
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
+#  https://code.google.com/p/Selenium/wiki/Grid2
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
 # See hub defaults at
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
 # Had to increase -cleanUpCycle and -nodePolling to avoid
 #  UnknownError: Session [.*] was terminated due to TIMEOUT
 java ${JAVA_OPTS} \

@@ -149,7 +149,7 @@ RUN useradd seluser \
 #==============================
 # Regarding urandom see
 #  http://stackoverflow.com/q/26021181/511069
-#  https://github.com/SeleniumHQ/docker-selenium/issues/14#issuecomment-67414070
+#  https://github.com/SeleniumHQ/docker-Selenium/issues/14#issuecomment-67414070
 RUN apt -qqy update \
   && apt -qqy install \
     openjdk-8-jre-headless \
@@ -175,21 +175,21 @@ RUN echo "${UBUNTU_FLAVOR}" > UBUNTU_FLAVOR \
 ARG SEL_DIRECTORY="3.14"
 ENV SEL_VER="3.141.59"
 
-RUN wget -nv "https://github.com/dosel/selenium/releases/download/selenium-3.141.59-patch-d47e74d6f2/selenium.jar" \
-  && ln -s "selenium.jar" \
-           "selenium-server-standalone-${SEL_VER}.jar" \
-  && ln -s "selenium.jar" \
-           "selenium-server-standalone-3.jar"
+RUN wget -nv "https://github.com/dosel/Selenium/releases/download/Selenium-3.141.59-patch-d47e74d6f2/Selenium.jar" \
+  && ln -s "Selenium.jar" \
+           "Selenium-server-standalone-${SEL_VER}.jar" \
+  && ln -s "Selenium.jar" \
+           "Selenium-server-standalone-3.jar"
 
 # TODO: Enable this again when Selenium 4.0 is released
 #RUN echo $SEL_VER
-#RUN  export SELBASE="https://selenium-release.storage.googleapis.com" \
-#  && export SELPATH="${SEL_DIRECTORY}/selenium-server-standalone-${SEL_VER}.jar" \
+#RUN  export SELBASE="https://Selenium-release.storage.googleapis.com" \
+#  && export SELPATH="${SEL_DIRECTORY}/Selenium-server-standalone-${SEL_VER}.jar" \
 #  && wget -nv ${SELBASE}/${SELPATH} \
-#  && ln -s "selenium-server-standalone-${SEL_VER}.jar" \
-#           "selenium-server-standalone-3.jar"
+#  && ln -s "Selenium-server-standalone-${SEL_VER}.jar" \
+#           "Selenium-server-standalone-3.jar"
 
-LABEL selenium_version "${SEL_VER}"
+LABEL Selenium_Version "${SEL_VER}"
 
 #=============================
 # sudo by default from now on
@@ -197,7 +197,7 @@ LABEL selenium_version "${SEL_VER}"
 USER root
 
 #=========================================================
-# Python2 for Supervisor, selenium tests, and other stuff
+# Python2 for Supervisor, Selenium tests, and other stuff
 #=========================================================
 # RUN apt -qqy update \
 #   && apt -qqy --no-install-recommends install \
@@ -212,7 +212,7 @@ USER root
 #   && apt -qyy clean
 
 #=========================================================
-# Python3 for Supervisor, selenium tests, and other stuff
+# Python3 for Supervisor, Selenium tests, and other stuff
 #=========================================================
 # Note Python3 fails installing mozInstall==1.12 with
 #  NameError: name 'file' is not defined
@@ -238,23 +238,23 @@ RUN cd /usr/local/bin \
   && ln -s python3 python \
   && ln -s python3-config python-config \
   && ln -s /usr/bin/python3 /usr/bin/python \
-  && python --version \
-  && pip --version
+  && python --Version \
+  && pip --Version
 
 #====================
 # Supervisor install
 #====================
 # TODO: Upgrade to supervisor stable 4.0 as soon as is released
-# Check every now and then if version 4 is finally the stable one
+# Check every now and then if Version 4 is finally the stable one
 #  https://pypi.python.org/pypi/supervisor
 #  https://github.com/Supervisor/supervisor
 # RUN apt -qqy update \
 #   && apt -qqy install \
 #     supervisor \
-# 2018-09-28 commit: 837c159ae51f3b, supervisor/version.txt: 4.0.0.dev0
-# 2018-06-01 commit: ec495be4e28c69, supervisor/version.txt: 4.0.0.dev0
-# 2017-10-21 commit: 3f04badc3237f0, supervisor/version.txt: 4.0.0.dev0
-# 2017-05-30 commit: 946d9cf3be4db3, supervisor/version.txt: 4.0.0.dev0
+# 2018-09-28 commit: 837c159ae51f3b, supervisor/Version.txt: 4.0.0.dev0
+# 2018-06-01 commit: ec495be4e28c69, supervisor/Version.txt: 4.0.0.dev0
+# 2017-10-21 commit: 3f04badc3237f0, supervisor/Version.txt: 4.0.0.dev0
+# 2017-05-30 commit: 946d9cf3be4db3, supervisor/Version.txt: 4.0.0.dev0
 ENV RUN_DIR="/var/run/sele"
 RUN SHA="837c159ae51f3bf12c1d30a8cb44f3450611983c" \
   && pip install --no-cache \
@@ -273,7 +273,7 @@ RUN SHA="837c159ae51f3bf12c1d30a8cb44f3450611983c" \
 # xfonts-100dpi
 # xfonts-75dpi
 # Regarding fonts-liberation see:
-#  https://github.com/SeleniumHQ/docker-selenium/issues/383#issuecomment-278367069
+#  https://github.com/SeleniumHQ/docker-Selenium/issues/383#issuecomment-278367069
 RUN apt -qqy update \
   && apt -qqy --no-install-recommends install \
     libfontconfig \
@@ -404,7 +404,7 @@ RUN apt -qqy update \
 #-----------------#
 # Install all Firefox dependencies
 # Adding libasound2 and others, credits to @jackTheRipper
-#  https://github.com/SeleniumHQ/docker-selenium/pull/418
+#  https://github.com/SeleniumHQ/docker-Selenium/pull/418
     # libasound2 \
     # libpulse-dev \
     # xul-ext-ubufox \
@@ -442,7 +442,7 @@ RUN cd /opt \
   && chown -R seluser:seluser /opt/firefox \
   && chmod -R 777 /opt/firefox
 
-LABEL selenium_firefox_version "${FF_VER}"
+LABEL Selenium_firefox_Version "${FF_VER}"
 
 #============
 # GeckoDriver
@@ -471,7 +471,7 @@ ENV CHROME_URL="https://dl.google.com/linux/direct" \
     CHROME_BASE_DEB_PATH="/home/seluser/chrome-deb/google-chrome" \
     GREP_ONLY_NUMS_VER="[0-9.]{2,20}"
 
-LABEL selenium_chrome_version "${EXPECTED_CHROME_VERSION}"
+LABEL Selenium_chrome_Version "${EXPECTED_CHROME_VERSION}"
 
 RUN apt -qqy update \
   && mkdir -p chrome-deb \
@@ -484,13 +484,13 @@ RUN apt -qqy update \
   && apt -qyy autoremove \
   && rm -rf /var/lib/apt/lists/* \
   && apt -qyy clean \
-  && export CH_STABLE_VER=$(/usr/bin/google-chrome-stable --version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
+  && export CH_STABLE_VER=$(/usr/bin/google-chrome-stable --Version | grep -iEo "${GREP_ONLY_NUMS_VER}") \
   && echo "CH_STABLE_VER:'${CH_STABLE_VER}' vs EXPECTED_CHROME_VERSION:'${EXPECTED_CHROME_VERSION}'" \
   && [ "${CH_STABLE_VER}" = "${EXPECTED_CHROME_VERSION}" ] || fail
 
 # We have a wrapper for /opt/google/chrome/google-chrome
 RUN mv /opt/google/chrome/google-chrome /opt/google/chrome/google-chrome-base
-COPY selenium-node-chrome/opt /opt
+COPY Selenium-node-chrome/opt /opt
 COPY lib/* /usr/lib/
 
 # Use a custom wallpaper for Fluxbox
@@ -513,7 +513,7 @@ ENV CHROME_DRIVER_BASE="chromedriver.storage.googleapis.com" \
     CPU_ARCH="64"
 ENV CHROME_DRIVER_FILE="chromedriver_linux${CPU_ARCH}.zip"
 ENV CHROME_DRIVER_URL="https://${CHROME_DRIVER_BASE}/${CHROME_DRIVER_VERSION}/${CHROME_DRIVER_FILE}"
-# Gets latest chrome driver version. Or you can hard-code it, e.g. 2.15
+# Gets latest chrome driver Version. Or you can hard-code it, e.g. 2.15
 RUN  wget -nv -O chromedriver_linux${CPU_ARCH}.zip ${CHROME_DRIVER_URL} \
   && unzip chromedriver_linux${CPU_ARCH}.zip \
   && rm chromedriver_linux${CPU_ARCH}.zip \
@@ -546,8 +546,8 @@ ENV DEFAULT_SELENIUM_HUB_PORT="24444" \
     DEFAULT_NOVNC_PORT="26080" \
     DEFAULT_SUPERVISOR_HTTP_PORT="19001"
 
-# Commented for now; all these versions are still available at
-#   https://github.com/elgalu/docker-selenium/releases/tag/2.47.1m
+# Commented for now; all these Versions are still available at
+#   https://github.com/elgalu/docker-Selenium/releases/tag/2.47.1m
 # CHROME_FLAVOR "stable"
 #   Default chrome flavor, options no longer available: beta|unstable
 # PICK_ALL_RANDOM_PORTS "true" / "false"
@@ -564,7 +564,7 @@ ENV DEFAULT_SELENIUM_HUB_PORT="24444" \
 # XVFB_STARTRETRIES
 # XMANAGER
 #   We used to support 2 X managers: fluxbox | openbox
-#   But after version 3.0.1 we only support fluxbox
+#   But after Version 3.0.1 we only support fluxbox
 #   to save disk space
 # XMANAGER_STARTRETRIES
 # XMANAGER_STARTSECS
@@ -591,13 +591,13 @@ ENV DEFAULT_SELENIUM_HUB_PORT="24444" \
 #   more: "--ignore-certificate-errors"
 # CHROME_VERBOSELOGGING
 #   Will be passed with: -Dwebdriver.chrome.verboseLogging
-#     SELENIUM_NODE_CHROME_PARAMS='-Dselenium.chrome.args="--no-sandbox"' \
+#     SELENIUM_NODE_CHROME_PARAMS='-DSelenium.chrome.args="--no-sandbox"' \
 #     WEBDRIVER_NODE_CHROME_PARAMS='-Dwebdriver.chrome.args="--no-sandbox"' \
 #     Selenium capabilities descriptive (to avoid opera/ie warnings)
-#      docs at https://code.google.com/p/selenium/wiki/Grid2
+#      docs at https://code.google.com/p/Selenium/wiki/Grid2
 # SEL_RELEASE_TIMEOUT_SECS
 #   -timeout AKA GRID_TIMEOUT TODO fix with, ping @allanatadministrate
-#   https://github.com/SeleniumHQ/docker-selenium/pull/393
+#   https://github.com/SeleniumHQ/docker-Selenium/pull/393
 # SEL_BROWSER_TIMEOUT_SECS
 # SELENIUM_NODE_REGISTER_CYCLE
 #   How often in ms the node will try to register itself again.
@@ -705,7 +705,7 @@ ENV FIREFOX_VERSION="${FF_VER}" \
   SELENIUM_HUB_PORT="${DEFAULT_SELENIUM_HUB_PORT}" \
   SELENIUM_HUB_PROTO="http" \
   SELENIUM_HUB_HOST="127.0.0.1" \
-  # Unfortunately selenium is missing a -bind setting so -host
+  # Unfortunately Selenium is missing a -bind setting so -host
   # is used multipurpose forcing us to set it now to 0.0.0.0
   # to match the binding meaning in oposed to host meaning
   SELENIUM_NODE_HOST="0.0.0.0" \
@@ -836,19 +836,19 @@ COPY **/bin/* ${BIN_UTILS}/
 COPY host-scripts/* /host-scripts/
 COPY test/* /test/
 COPY test/run_test.sh /usr/bin/run_test
-COPY test/selenium_test.sh /usr/bin/selenium_test
+COPY test/Selenium_test.sh /usr/bin/Selenium_test
 COPY test/python_test.py /usr/bin/python_test
 COPY images ./images
 COPY LICENSE.md /home/seluser/
 COPY Analytics.md /home/seluser/
 
-# Include current version
+# Include current Version
 COPY GLOBAL_PATCH_LEVEL.txt /home/seluser/
 RUN echo "${SEL_VER}-$(cat GLOBAL_PATCH_LEVEL.txt)" > /home/seluser/VERSION
 
 # Moved from entry.sh
 ENV SUPERVISOR_PIDFILE="${RUN_DIR}/supervisord.pid" \
-    DOCKER_SELENIUM_STATUS="${LOGS_DIR}/docker-selenium-status.log" \
+    DOCKER_SELENIUM_STATUS="${LOGS_DIR}/docker-Selenium-status.log" \
     VNC_TRYOUT_ERR_LOG="${LOGS_DIR}/vnc-tryouts-stderr" \
     VNC_TRYOUT_OUT_LOG="${LOGS_DIR}/vnc-tryouts-stdout"
 

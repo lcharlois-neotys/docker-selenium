@@ -4,7 +4,7 @@ source ./bin/functions.sh
 
 # Tests for function get_server_num
 #
-# https://github.com/SeleniumHQ/docker-selenium/blob/master/NodeBase/test-functions.sh
+# https://github.com/SeleniumHQ/docker-Selenium/blob/master/NodeBase/test-functions.sh
 # Test data from http://askubuntu.com/questions/432255/what-is-display-environment-variable
 @test 'get_server_num of :99.1' {
 

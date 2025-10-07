@@ -2,7 +2,7 @@
 set -e
 
 # Example:
-#  firefox -version 2>&1
+#  firefox -Version 2>&1
 #=> Mozilla Firefox 45.0.2
 
 # Fix the DISPLAY env var if we saved it
@@ -10,8 +10,8 @@ set -e
 
 # Example:
 #=> 45.0.2
-if firefox -version >/dev/null 2>&1; then
-  firefox -version 2>&1 | grep -Po '(?<=Firefox )([a-z0-9\.]+)'
+if firefox -Version >/dev/null 2>&1; then
+  firefox -Version 2>&1 | grep -Po '(?<=Firefox )([a-z0-9\.]+)'
 else
-  firefox -version #fail and show error
+  firefox -Version #fail and show error
 fi

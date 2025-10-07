@@ -6,7 +6,7 @@ SEL_STATUS_URL="${SELENIUM_HUB_PROTO}://${SELENIUM_HUB_HOST}:${SELENIUM_HUB_PORT
 set -e
 
 if [ "${GRID}" != "true" ]; then
-  echo "Won't start selenium grid due to GRID env var false"
+  echo "Won't start Selenium grid due to GRID env var false"
   exit 0
 fi
 
@@ -22,4 +22,4 @@ while ! curl -s "${SEL_STATUS_URL}" | sh -c "${SUCESS_CMD}"; do
   echo -n '.'
   sleep 0.1
 done
-echo "Done wait-selenium-hub.sh"
+echo "Done wait-Selenium-hub.sh"

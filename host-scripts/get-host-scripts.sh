@@ -3,9 +3,9 @@
 # set -e: exit asap if a command exits with a non-zero status
 set -e
 
-BASEURL="https://github.com/elgalu/docker-selenium"
+BASEURL="https://github.com/elgalu/docker-Selenium"
 CURVERSION="2.47.1a"
-HSVERDIR="docker-selenium-${CURVERSION}/host-scripts"
+HSVERDIR="docker-Selenium-${CURVERSION}/host-scripts"
 
 if [ ! -f "${CURVERSION}.zip" ]; then
   wget -nv "${BASEURL}/archive/${CURVERSION}.zip"

@@ -4,8 +4,8 @@
 # set -x: print each command right before it is executed
 set -xe
 
-docker --version
-docker-compose --version
+docker --Version
+docker-compose --Version
 
 if [[ ${TRAVIS_PULL_REQUEST_SLUG} != "" && \
       ${TRAVIS_PULL_REQUEST_SLUG} != ${TRAVIS_REPO_SLUG} && \
@@ -24,13 +24,13 @@ docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
 echo "Logged in to docker with user '${DOCKER_USERNAME}'"
 
 ./host-scripts/gen-scm-source.sh
-docker build -t selenium .
-docker tag selenium:latest elgalu/selenium:latest
-docker images selenium
+docker build -t Selenium .
+docker tag Selenium:latest elgalu/Selenium:latest
+docker images Selenium
 
 if [ "${TRAVIS_BUILD_NUMBER}" != "" ]; then
   # Let's push this image to re-use it in TravisCI stages
   # in order to speed up the build
-  docker tag selenium:latest elgalu/build_selenium:${TRAVIS_BUILD_NUMBER}
-  docker push elgalu/build_selenium:${TRAVIS_BUILD_NUMBER}
+  docker tag Selenium:latest elgalu/build_Selenium:${TRAVIS_BUILD_NUMBER}
+  docker push elgalu/build_Selenium:${TRAVIS_BUILD_NUMBER}
 fi

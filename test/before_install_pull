@@ -14,8 +14,8 @@ die () {
   exit $errnum
 }
 
-docker --version || echo "WARN: No docker installed yet"
-docker-compose --version || echo "WARN: No docker-compose installed yet"
+docker --Version || echo "WARN: No docker installed yet"
+docker-compose --Version || echo "WARN: No docker-compose installed yet"
 
 [ "${TRAVIS_BUILD_NUMBER}" == "" ] && die "Need env var TRAVIS_BUILD_NUMBER to know where to pull from"
 
@@ -32,13 +32,13 @@ if [[ ${TRAVIS_PULL_REQUEST_SLUG} != "" && \
   echo "WARN: External PRs are untrusted by default therefore we need can't reuse and pull the image so building it from scratch..."
   # ./test/before_install_setup
   ./host-scripts/gen-scm-source.sh
-  docker build -t selenium .
-  docker tag selenium:latest elgalu/selenium:latest
+  docker build -t Selenium .
+  docker tag Selenium:latest elgalu/Selenium:latest
 else
-  docker pull elgalu/build_selenium:${TRAVIS_BUILD_NUMBER}
-  docker tag elgalu/build_selenium:${TRAVIS_BUILD_NUMBER} selenium:latest
-  docker tag elgalu/build_selenium:${TRAVIS_BUILD_NUMBER} elgalu/selenium:latest
+  docker pull elgalu/build_Selenium:${TRAVIS_BUILD_NUMBER}
+  docker tag elgalu/build_Selenium:${TRAVIS_BUILD_NUMBER} Selenium:latest
+  docker tag elgalu/build_Selenium:${TRAVIS_BUILD_NUMBER} elgalu/Selenium:latest
 fi
 
-docker images selenium
-docker images elgalu/selenium
+docker images Selenium
+docker images elgalu/Selenium

@@ -15,7 +15,7 @@ By using this software you agree that the following non-PII (non personally iden
 By using this software you also grant us a nonexclusive, irrevocable, world-wide, perpetual royalty-free permission to use, modify and publish these data for all purposes, internally or publicly, including the right to sub-license said permission rights.
 
 We collect, process and use the following data:
-* Docker-selenium version
+* Docker-Selenium Version
 * Anonymized IP address (only first two octets)
 * Country and city
 * Selected screen resolution
@@ -23,14 +23,14 @@ We collect, process and use the following data:
 * System language
 * Chrome nodes count
 * Firefox nodes count
-* Docker-selenium options set via environment variables
+* Docker-Selenium options set via environment variables
 * Date and time of certain events
-  * Docker-selenium started
-  * Docker-selenium stopped
+  * Docker-Selenium started
+  * Docker-Selenium stopped
   * Test duration
   * Test capabilities
   * Errors and stacktraces
-* Docker version
+* Docker Version
 * Docker info fields
   * Server Version
   * Kernel Version

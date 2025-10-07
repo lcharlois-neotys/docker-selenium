@@ -3,8 +3,8 @@
 # docker exec grid cat caps
 
 gen_caps_json() {
-  CHROME_STABLE=$(chrome_stable_version)
-  FIREFOX_STABLE=$(firefox_version)
+  CHROME_STABLE=$(chrome_stable_Version)
+  FIREFOX_STABLE=$(firefox_Version)
 
   cat << EOF
 {

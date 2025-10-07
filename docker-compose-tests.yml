@@ -3,11 +3,11 @@
 # Usage:
 #  docker-compose -p grid up --force-recreate
 #  docker-compose -p grid scale mock=1 hub=1 chrome=3 firefox=3
-version: '2.1'
+Version: '2.1'
 
 services:
   hub:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     ports:
       # Note 24444 is the default SELENIUM_HUB_PORT inside the container
       #  and  4444 will be mapped into your host for easy access.
@@ -32,7 +32,7 @@ services:
       - MOCK_SERVER_HOST=mock
 
   chrome:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     volumes:
@@ -55,7 +55,7 @@ services:
       - FIREFOX=false
 
   firefox:
-    image: elgalu/selenium
+    image: elgalu/Selenium
     depends_on:
       - hub
     volumes:

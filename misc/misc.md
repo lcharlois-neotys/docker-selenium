@@ -2,18 +2,18 @@ Miscellaneous internal notes, do not read!
 
 ## Build
 
-    time (docker build -t selenium . ;echo $?;beep)
-    docker run --rm -ti --name=grid --privileged -e SELENIUM_HUB_PORT=4444 -p=4444:4444 -p=5900:25900 -e VIDEO=true -e CHROME=true -e FIREFOX=true -e DEBUG=bash --shm-size=1g selenium
+    time (docker build -t Selenium . ;echo $?;beep)
+    docker run --rm -ti --name=grid --privileged -e SELENIUM_HUB_PORT=4444 -p=4444:4444 -p=5900:25900 -e VIDEO=true -e CHROME=true -e FIREFOX=true -e DEBUG=bash --shm-size=1g Selenium
 
 ### Uid
-    docker run --rm -ti -u 1000060000:1000060000 --name=grid --privileged -e SELENIUM_HUB_PORT=4444 -p=4444:4444 -p=5900:25900 -e VIDEO=true -e CHROME=false -e FIREFOX=false --shm-size=1g selenium
+    docker run --rm -ti -u 1000060000:1000060000 --name=grid --privileged -e SELENIUM_HUB_PORT=4444 -p=4444:4444 -p=5900:25900 -e VIDEO=true -e CHROME=false -e FIREFOX=false --shm-size=1g Selenium
 
 ### K8s How to run
 Add ` -- bash` at the end to run an arbitrary command.
 
     kubectl run dosel -ti --rm=false --attach=true --leave-stdin-open=true --port=24444 \
       --env="SELENIUM_HUB_PORT=24444" --env="FIREFOX=false"  \
-      --replicas=1 --image=elgalu/selenium \
+      --replicas=1 --image=elgalu/Selenium \
       --requests="cpu=500m,memory=2Gi" --limits="cpu=900m,memory=3Gi"
 
     kubectl get pods -l "run=dosel" --output "jsonpath={.items..status.containerStatuses..state}"
@@ -21,7 +21,7 @@ Add ` -- bash` at the end to run an arbitrary command.
     #=>        map[waiting:map[reason:ContainerCreating]]
     #=>        map[running:map[startedAt:2017-10-09T11:46:53Z]]
     #=> e.g. failed:
-    #=>        map[waiting:map[reason:ImagePullBackOff message:Back-off pulling image "elgalu/docker-selenium"]]
+    #=>        map[waiting:map[reason:ImagePullBackOff message:Back-off pulling image "elgalu/docker-Selenium"]]
 
 #### K8s get pod name
     POD_NAME=$(kubectl get pod -l "run=dosel" -o "jsonpath={.items..metadata.name}")
@@ -39,8 +39,8 @@ Add ` -- bash` at the end to run an arbitrary command.
 #### K8s events to understand reason of failure
 
     kubectl describe pods dosel
-    #=> Failed to pull image "elgalu/docker-selenium": rpc error: code = 2 desc =
-    #=> Error: image elgalu/docker-selenium:latest not found
+    #=> Failed to pull image "elgalu/docker-Selenium": rpc error: code = 2 desc =
+    #=> Error: image elgalu/docker-Selenium:latest not found
 
 #### K8s Delete
 Using `all` is handy but in this case `deployment` should also be enough as deleting the deployment will also delete the pod
@@ -50,10 +50,10 @@ Using `all` is handy but in this case `deployment` should also be enough as dele
     #=> deployment "dosel" deleted
 
 ### Wait
-Wait and get versions
+Wait and get Versions
 
     docker exec grid wait_all_done 30s
-    docker exec grid versions
+    docker exec grid Versions
 
 ### Tests
 See [CONTRIBUTING](./CONTRIBUTING.md)
@@ -69,9 +69,9 @@ Push setup, first time only:
 
 Build a grid with extra nodes
 
-    docker run --rm --name=grid -p 4444:24444 -p 5900:25900 --shm-size=1g -e VNC_PASSWORD=hola selenium
+    docker run --rm --name=grid -p 4444:24444 -p 5900:25900 --shm-size=1g -e VNC_PASSWORD=hola Selenium
 
-    docker run --rm --name=node -e DISP_N=13 -e SSHD_PORT=22223 -e SUPERVISOR_HTTP_PORT=29003 -e VNC_PORT=25903 -e SELENIUM_NODE_CH_PORT=25330 -e SELENIUM_NODE_FF_PORT=25331 -e GRID=false -e CHROME=true -e FIREFOX=true --net=container selenium
+    docker run --rm --name=node -e DISP_N=13 -e SSHD_PORT=22223 -e SUPERVISOR_HTTP_PORT=29003 -e VNC_PORT=25903 -e SELENIUM_NODE_CH_PORT=25330 -e SELENIUM_NODE_FF_PORT=25331 -e GRID=false -e CHROME=true -e FIREFOX=true --net=container Selenium
 
 See logs
 
@@ -83,13 +83,13 @@ See logs
     mkdir -p binaries && cd binaries
     scp ${SSHCMD}:/home/application/chrome-deb/google*.deb .
 
-List chrome versions via docker exec
+List chrome Versions via docker exec
 
     docker exec -ti grid bash -c "ls -lah /home/application/chrome-deb/"
 
-List firefox versions via docker exe
+List firefox Versions via docker exe
 
-    docker exec -ti grid bash -c "ls -lah /home/application/firefox-src/ && ls -lah /home/application/selenium/firefox**/firefox/firefox"
+    docker exec -ti grid bash -c "ls -lah /home/application/firefox-src/ && ls -lah /home/application/Selenium/firefox**/firefox/firefox"
 
 ## Transfer the other way around
 
@@ -98,22 +98,22 @@ List firefox versions via docker exe
 
 ## To update image id and digest
 
-    docker inspect -f='{{.Id}}' selenium
+    docker inspect -f='{{.Id}}' Selenium
     docker images --digests
 
 ## Run with shared dir
 
     docker run --rm --name=local -p=127.0.0.1:4460:24444 -p=127.0.0.1:5910:25900 \
-      -v /e2e/uploads:/e2e/uploads selenium
+      -v /e2e/uploads:/e2e/uploads Selenium
     docker run --rm --name=local -p=4460:24444 -p=5910:25900 \
-      -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) selenium
+      -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) Selenium
 
 
-    docker run --rm --name=ff -p=127.0.0.1:4461:24444 -p=127.0.0.1:5911:25900 -v /e2e/uploads:/e2e/uploads selenium
+    docker run --rm --name=ff -p=127.0.0.1:4461:24444 -p=127.0.0.1:5911:25900 -v /e2e/uploads:/e2e/uploads Selenium
 
 ## Run without shared dir and bind ports to all network interfaces
 
-    docker run -d --name=local -p=0.0.0.0:4444:24444 -p=0.0.0.0:5900:25900 selenium:0.1
+    docker run -d --name=local -p=0.0.0.0:4444:24444 -p=0.0.0.0:5900:25900 Selenium:0.1
 
 ## Opening tunnels
 
@@ -121,7 +121,7 @@ List firefox versions via docker exe
     export SOPTS="-o StrictHostKeyChecking=no"
     export TUNLOCOPTS="-v -N $SOPTS -L"
     export TUNREVOPTS="-v -N $SOPTS -R"
-    # to use selenium at localhost:
+    # to use Selenium at localhost:
     ssh ${TUNLOCOPTS} localhost:4455:${SELE_INST_IP}:24444 -p 2222 application@${SELE_INST_IP}
     # to expose local ports 3000/2525/4545/4546 inside docker container
     ssh ${TUNREVOPTS} localhost:3000:localhost:3000 -p 2222 application@${SELE_INST_IP}
@@ -132,39 +132,39 @@ List firefox versions via docker exe
 ## Run without dir and bind to all interfaces
 Note anything after the image will be taken as arguments for the cmd/entrypoint
 
-    docker run --rm --name=local -p=0.0.0.0:8813:8484 -p=0.0.0.0:2222:2222 -p=0.0.0.0:4470:24444 -p=0.0.0.0:5900:25900 -e SCREEN_WIDTH=1800 -e SCREEN_HEIGHT=1110 -e VNC_PASSWORD=hola -e SSH_AUTH_KEYS="$(cat ~/.ssh/id_rsa.pub)" selenium
+    docker run --rm --name=local -p=0.0.0.0:8813:8484 -p=0.0.0.0:2222:2222 -p=0.0.0.0:4470:24444 -p=0.0.0.0:5900:25900 -e SCREEN_WIDTH=1800 -e SCREEN_HEIGHT=1110 -e VNC_PASSWORD=hola -e SSH_AUTH_KEYS="$(cat ~/.ssh/id_rsa.pub)" Selenium
 
-    docker run --rm --name=local -p=4470:24444 -p=5900:25900 -e VNC_PASSWORD=hola selenium
-    docker run --rm --name=local -p=4470:24444 -p=5900:25900 -e VNC_PASSWORD=hola docker.io/selenium
-    docker run --rm --name=local -p=0.0.0.0:4470:24444 -p=0.0.0.0:5900:25900 --add-host myserver.dev:172.17.42.1 selenium
+    docker run --rm --name=local -p=4470:24444 -p=5900:25900 -e VNC_PASSWORD=hola Selenium
+    docker run --rm --name=local -p=4470:24444 -p=5900:25900 -e VNC_PASSWORD=hola docker.io/Selenium
+    docker run --rm --name=local -p=0.0.0.0:4470:24444 -p=0.0.0.0:5900:25900 --add-host myserver.dev:172.17.42.1 Selenium
 
-However adding a custom host IP to server-selenium.local (e.g. bsele ssh config) is more work:
+However adding a custom host IP to server-Selenium.local (e.g. bsele ssh config) is more work:
 
     ssh bsele
     sudo sh -c 'echo "10.161.128.36  myserver.dev" >> /etc/hosts'
 
     vncv localhost:5900 -Scaling=60%  &
 
-    docker run --rm --name=ff -p=0.0.0.0:4471:24444 -p=0.0.0.0:5921:25900 selenium
+    docker run --rm --name=ff -p=0.0.0.0:4471:24444 -p=0.0.0.0:5921:25900 Selenium
 
 Automatic builds not working for me right now, maybe there is an issue with docker registry v1 vs v2
-https://registry.hub.docker.com/u/elgalu/docker-selenium/builds_history/31621/
+https://registry.hub.docker.com/u/elgalu/docker-Selenium/builds_history/31621/
 
 ## Pulling
 
-    docker pull registry.hub.docker.com/selenium
+    docker pull registry.hub.docker.com/Selenium
 
 ## Pull
 
-    docker run -d --name=max -p=0.0.0.0:4411:24444 -p=0.0.0.0:5911:25900 selenium
+    docker run -d --name=max -p=0.0.0.0:4411:24444 -p=0.0.0.0:5911:25900 Selenium
 
 How to connect through vnc (need a vnc client)
 
-    vnc-client.sh server-selenium.local:{{vncPort}} -Scaling=60%  &
+    vnc-client.sh server-Selenium.local:{{vncPort}} -Scaling=60%  &
 
-How to run ui:tests remotely on server-selenium.local instead of your laptop.
+How to run ui:tests remotely on server-Selenium.local instead of your laptop.
 
-    grunt ui:remote-test --browser=chrome --seleniumUrl="http://server-selenium.local:{{seleniumPort}}/wd/hub" --appHost={{yourLaptopIPAddr}}
+    grunt ui:remote-test --browser=chrome --SeleniumUrl="http://server-Selenium.local:{{SeleniumPort}}/wd/hub" --appHost={{yourLaptopIPAddr}}
 
 Note you may need to open firewall ports
 
@@ -284,7 +284,7 @@ reported to be fixed with --disable-impl-side-painting:
   https://code.google.com/p/chromedriver/issues/detail?id=732#c19
 
 Protractor config example
-Update: doesn't fix the issue, see: https://github.com/elgalu/docker-selenium/issues/20
+Update: doesn't fix the issue, see: https://github.com/elgalu/docker-Selenium/issues/20
 
     capabilities: {
         browserName: 'chrome',
@@ -293,12 +293,12 @@ Update: doesn't fix the issue, see: https://github.com/elgalu/docker-selenium/is
         },
     },
 
-Example of using xvfb-run to just run selenium:
+Example of using xvfb-run to just run Selenium:
 
     xvfb-run --server-num=$DISP_N --server-args="-screen ${SCREEN_NUM} ${GEOMETRY}" \
       "$BIN_UTILS/local-sel-headless.sh"  &
 
-Example of sending selenium output to a log instead of stdout
+Example of sending Selenium output to a log instead of stdout
 
     $BIN_UTILS/local-sel-headless.sh > $SELENIUM_LOG  &
 
@@ -323,7 +323,7 @@ Alternative to active wait until VNC server is listening
       die "Failed to start VNC!" 2 true
     fi
 
-Alternative to active wait until selenium is up
+Alternative to active wait until Selenium is up
 Inspired from: http://stackoverflow.com/a/21378425/511069
 
     while ! curl http://localhost:24444/wd/hub/status >/dev/null; do :; done
@@ -360,7 +360,7 @@ https://github.com/rogaha/docker-desktop/blob/master/startup.sh#L7
 https://github.com/rogaha/docker-desktop/blob/master/Dockerfile#L38
 
 ### Using free available ports and tunneling to emulate localhost testing
-Let's say you need to expose 4 ports (3000, 2525, 4545, 4546) from your laptop but test on the remote docker selenium.
+Let's say you need to expose 4 ports (3000, 2525, 4545, 4546) from your laptop but test on the remote docker Selenium.
 Enter tunneling.
 
 ```sh
@@ -373,11 +373,11 @@ TUNREVOPTS="-v -N $SOPTS -R"
 ANYPORT=0
 
 # -- Option 1. docker run - Running docker locally
-# Run a selenium instance binding to host random ports
+# Run a Selenium instance binding to host random ports
 REMOTE_DOCKER_SRV=localhost
 CONTAINER=$(docker run -d -p=0.0.0.0:${ANYPORT}:22222 -p=0.0.0.0:${ANYPORT}:24444 \
     -p=0.0.0.0:${ANYPORT}:25900 -e SCREEN_HEIGHT=1110 -e VNC_PASSWORD=hola \
-    -e SSH_AUTH_KEYS="$(cat ~/.ssh/id_rsa.pub)" selenium
+    -e SSH_AUTH_KEYS="$(cat ~/.ssh/id_rsa.pub)" Selenium
 
 # -- Option 2.docker run- Running docker on remote docker server like in the cloud
 # Useful if the docker server is running in the cloud. Establish free local ports
@@ -387,10 +387,10 @@ ssh ${REMOTE_DOCKER_SRV} #get into the remote docker provider somehow
 # it acts as a jump host so my public key is already on that server
 CONTAINER=$(docker run -d -p=0.0.0.0:${ANYPORT}:22222 -e SCREEN_HEIGHT=1110 \
     -e VNC_PASSWORD=hola -e SSH_AUTH_KEYS="$(cat ~/.ssh/authorized_keys)" \
-    selenium
+    Selenium
 
 # -- Common: Wait for the container to start
-./host-scripts/wait-docker-selenium.sh grid 7s
+./host-scripts/wait-docker-Selenium.sh grid 7s
 json_filter='{{(index (index .NetworkSettings.Ports "22222/tcp") 0).HostPort}}'
 SSHD_PORT=$(docker inspect -f='${json_filter}' $CONTAINER)
 echo $SSHD_PORT #=> e.g. SSHD_PORT=32769
@@ -407,7 +407,7 @@ FREE_SELE_PORT=$(python -c 'import socket; s=socket.socket(); \
     s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
 FREE_VNC_PORT=$(python -c 'import socket; s=socket.socket(); \
     s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
-# -- Option 2. Tunneling selenium+vnc is necessary if using a remote docker
+# -- Option 2. Tunneling Selenium+vnc is necessary if using a remote docker
 ssh ${TUNLOCOPTS} localhost:${FREE_SELE_PORT}:localhost:24444 \
     -p ${SSHD_PORT} application@${REMOTE_DOCKER_SRV} &
 LOC_TUN_SELE_PID=$!
@@ -434,7 +434,7 @@ echo Option 1. Should show 4 ports when doing it locally
 echo Option 2. Should show 6 ports when doing it remotely
 echo $REM_TUN1_PID $REM_TUN2_PID $REM_TUN3_PID \
     $REM_TUN4_PID $LOC_TUN_SELE_PID $LOC_TUN_VNC_PID
-# Use the container as if selenium and VNC were running locally
+# Use the container as if Selenium and VNC were running locally
 # thanks to ssh -L port FWD
 google-chrome-stable \
     "http://localhost:${FREE_SELE_PORT}/wd/hub/static/resource/hub.html"
@@ -467,13 +467,13 @@ env:
   global:
     - TEST_SLEEPS="0.7"
   matrix:
-    # Docker compose stable version
+    # Docker compose stable Version
     - DOCKER_VERSION="stable"
       DOCKER_COMPOSE_VERSION="1.7.1"
       DOCKER_PUSH=true
     - DOCKER_VERSION="1.12.0-rc3"
       DOCKER_COMPOSE_VERSION="1.7.1"
-    # Docker compose release candidate version
+    # Docker compose release candidate Version
     - DOCKER_VERSION="stable"
       DOCKER_COMPOSE_VERSION="1.8.0-rc1"
     - DOCKER_VERSION="1.12.0-rc3"
@@ -525,12 +525,12 @@ export BROWSER_LOGFILE="${LOGS_DIR}/firefox_browser.log"
 
 TODO: Figure out how to set `log_path`:
 https://github.com/mozilla/geckodriver/issues/362#issuecomment-273948335
-https://github.com/SeleniumHQ/selenium/commit/40a5d80e995071fb85f86e70e15e4b96cc692d11
+https://github.com/SeleniumHQ/Selenium/commit/40a5d80e995071fb85f86e70e15e4b96cc692d11
 
 Outside of the running tests.
 
 ### Chrome artifact
-Keep certain bins if chrome version changed for example:
+Keep certain bins if chrome Version changed for example:
 
     cd ~/tmp_binaries && VER="62.0.3202.75" && NAME="google-chrome-stable_${VER}_amd64" && echo ${NAME}
     wget -nv --show-progress -O ${NAME}.deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"

@@ -160,7 +160,7 @@ gen_and_cp_capabilities_and_png() {
 }
 
 #######################################
-# Docker login, tag and push selenium #
+# Docker login, tag and push Selenium #
 #######################################
 docker_login_tag_push() {
   echo "script_push::docker_login_tag_push"
@@ -172,31 +172,31 @@ docker_login_tag_push() {
   docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
   echo "Logged in to docker with user '${DOCKER_USERNAME}'"
   echo "docker tag and docker push using TRAVIS_TAG=${TRAVIS_TAG}"
-  docker tag selenium:latest elgalu/selenium:${TRAVIS_TAG}
-  docker tag selenium:latest elgalu/selenium:latest
+  docker tag Selenium:latest elgalu/Selenium:${TRAVIS_TAG}
+  docker tag Selenium:latest elgalu/Selenium:latest
 
   # e.g. TAG_VERSION_MAJOR="3"
   TAG_VERSION_MAJOR="${TRAVIS_TAG::1}"
   echo "TAG_VERSION_MAJOR=${TAG_VERSION_MAJOR}"
-  docker tag selenium:latest elgalu/selenium:${TAG_VERSION_MAJOR}
+  docker tag Selenium:latest elgalu/Selenium:${TAG_VERSION_MAJOR}
   # e.g. TAG_VERSION_MAJ_MINOR="3.3"
   TAG_VERSION_MAJ_MINOR="${TRAVIS_TAG::3}"
   echo "TAG_VERSION_MAJ_MINOR=${TAG_VERSION_MAJ_MINOR}"
-  docker tag selenium:latest elgalu/selenium:${TAG_VERSION_MAJ_MINOR}
+  docker tag Selenium:latest elgalu/Selenium:${TAG_VERSION_MAJ_MINOR}
   # e.g. TAG_VERSION_MAJ_MIN_PATCH="3.3.1"
   TAG_VERSION_MAJ_MIN_PATCH="${TRAVIS_TAG::5}"
   echo "TAG_VERSION_MAJ_MIN_PATCH=${TAG_VERSION_MAJ_MIN_PATCH}"
-  docker tag selenium:latest elgalu/selenium:${TAG_VERSION_MAJ_MIN_PATCH}
+  docker tag Selenium:latest elgalu/Selenium:${TAG_VERSION_MAJ_MIN_PATCH}
 
-  # Push this version with all the corresponding tags
-  docker push elgalu/selenium:${TAG_VERSION_MAJOR}
-  docker push elgalu/selenium:${TAG_VERSION_MAJ_MINOR}
-  docker push elgalu/selenium:${TAG_VERSION_MAJ_MIN_PATCH}
-  docker push elgalu/selenium:${TRAVIS_TAG} | tee docker_push.log
-  docker push elgalu/selenium:latest
+  # Push this Version with all the corresponding tags
+  docker push elgalu/Selenium:${TAG_VERSION_MAJOR}
+  docker push elgalu/Selenium:${TAG_VERSION_MAJ_MINOR}
+  docker push elgalu/Selenium:${TAG_VERSION_MAJ_MIN_PATCH}
+  docker push elgalu/Selenium:${TRAVIS_TAG} | tee docker_push.log
+  docker push elgalu/Selenium:latest
 
   # Update Docker README.md badges
-  curl -XPOST "https://hooks.microbadger.com/images/elgalu/selenium/2blr1ujGSTcUtm3HnU0-h5m6yLY=" || true
+  curl -XPOST "https://hooks.microbadger.com/images/elgalu/Selenium/2blr1ujGSTcUtm3HnU0-h5m6yLY=" || true
 }
 
 #############################
@@ -208,7 +208,7 @@ github_release_from_LATEST_RELEASE() {
   [ -z "${GITHUB_TOKEN}" ] && die "Need env var GITHUB_TOKEN"
   [ "${TRAVIS_TAG}" == "" ] && die "Need env var TRAVIS_TAG"
 
-  hub --version || die "github.com/hub is not installed!"
+  hub --Version || die "github.com/hub is not installed!"
 
   # Let's remove the first line
   sed -i '1d' LATEST_RELEASE.md
@@ -220,7 +220,7 @@ github_release_from_LATEST_RELEASE() {
   mv temp.md LATEST_RELEASE.md
 
   # We need to gather the chrome.deb artifact to include it in the release
-  CHROME_VERSION=$(docker exec grid chrome_stable_version) \
+  CHROME_VERSION=$(docker exec grid chrome_stable_Version) \
     || die "while trying to get CHROME_VERSION"
 
   CHROME_DEB_FILE_NAME="google-chrome-stable_${CHROME_VERSION}_amd64"
@@ -297,7 +297,7 @@ git_config() {
 git_co_fetch_merge_stash() {
   echo "update_changelog_and_git_tag::git_co_fetch_merge_stash"
   git checkout -b travis-${TRAVIS_BUILD_NUMBER}
-  git remote add github "https://elgalubot:${GITHUB_TOKEN}@github.com/elgalu/docker-selenium.git"
+  git remote add github "https://elgalubot:${GITHUB_TOKEN}@github.com/elgalu/docker-Selenium.git"
   git fetch github
   # git stash save || true
   git checkout -t github/master -b github/master
@@ -309,18 +309,18 @@ git_co_fetch_merge_stash() {
 }
 
 #####################################################
-# Docker run `grid` so we can fetch actual versions #
+# Docker run `grid` so we can fetch actual Versions #
 #####################################################
 ensure_docker_run_dosel() {
-  local docker_selenium_image_count=$(docker images selenium:latest | grep "selenium" | wc -l)
+  local docker_Selenium_image_count=$(docker images Selenium:latest | grep "Selenium" | wc -l)
 
-  if [ ${docker_selenium_image_count} -eq 0 ]; then
-      echo "Seems that selenium:latest image is not around"
+  if [ ${docker_Selenium_image_count} -eq 0 ]; then
+      echo "Seems that Selenium:latest image is not around"
       exit 1
   fi
 
   if [[ $(docker ps -f "name=grid" --format '{{.Names}}') != "grid" ]]; then
-    docker run --name=grid -d -e VIDEO=false selenium:latest
+    docker run --name=grid -d -e VIDEO=false Selenium:latest
     sleep 1
     docker exec grid wait_all_done 40s
   fi
@@ -337,7 +337,7 @@ fi
 ensure_docker_run_dosel
 
 #####################################################
-# Checks that versions are consistent among artifacts
+# Checks that Versions are consistent among artifacts
 # == CHANGELOG.md
 # == github latest release
 # == LATEST_RELEASE.md
@@ -347,29 +347,29 @@ PREV_RELEASE_FROM_LATEST_RELEASE=$(grep -Po '(?<=## )([a-z0-9\.-]+)' LATEST_RELE
 [ "${PREV_RELEASE_FROM_CHANGELOG}" == "${PREV_RELEASE_FROM_LATEST_RELEASE}" ] || die \
   "Last release from CHANGELOG='${PREV_RELEASE_FROM_CHANGELOG}' doesn't match PREV_RELEASE_FROM_LATEST_RELEASE='${PREV_RELEASE_FROM_LATEST_RELEASE}'"
 
-if ! docker image inspect --format='{{.RepoDigests}}' selenium:latest; then
-  die "Unable to fetch .RepoDigests from selenium:latest image"
+if ! docker image inspect --format='{{.RepoDigests}}' Selenium:latest; then
+  die "Unable to fetch .RepoDigests from Selenium:latest image"
 fi
 
-if docker image inspect --format='{{.RepoDigests}}' selenium:latest | grep -E "^\[\]$"; then
-  die ".RepoDigests at selenium:latest is an empty array"
+if docker image inspect --format='{{.RepoDigests}}' Selenium:latest | grep -E "^\[\]$"; then
+  die ".RepoDigests at Selenium:latest is an empty array"
 fi
 
-TBD_DIGEST=$(docker image inspect --format='{{.RepoDigests}}' selenium:latest | grep -Po '(?<=@)([a-z0-9:]+)')
+TBD_DIGEST=$(docker image inspect --format='{{.RepoDigests}}' Selenium:latest | grep -Po '(?<=@)([a-z0-9:]+)')
 
-TBD_IMAGE_SIZE=$(docker images --format "{{.Size}}" selenium:latest) \
+TBD_IMAGE_SIZE=$(docker images --format "{{.Size}}" Selenium:latest) \
   || die "while trying to get TBD_IMAGE_SIZE"
 
-TBD_DOCKER_VERS=$(docker --version 2>&1 | grep -Po '(?<=version )([a-z0-9\.]+)') \
+TBD_DOCKER_VERS=$(docker --Version 2>&1 | grep -Po '(?<=Version )([a-z0-9\.]+)') \
   || die "while trying to get TBD_DOCKER_VERS"
 
-TBD_DOCKER_BUILD=$(docker --version 2>&1 | grep -Po '(?<=build )([a-z0-9\.]+)') \
+TBD_DOCKER_BUILD=$(docker --Version 2>&1 | grep -Po '(?<=build )([a-z0-9\.]+)') \
   || die "while trying to get TBD_DOCKER_BUILD"
 
-TBD_DOCKER_COMPOSE_VERS=$(docker-compose --version 2>&1 | grep -Po '(?<=version )([a-z0-9\.]+)') \
+TBD_DOCKER_COMPOSE_VERS=$(docker-compose --Version 2>&1 | grep -Po '(?<=Version )([a-z0-9\.]+)') \
   || die "while trying to get TBD_DOCKER_COMPOSE_VERS"
 
-TBD_DOCKER_COMPOSE_BUILD=$(docker-compose --version 2>&1 | grep -Po '(?<=build )([a-z0-9\.]+)') \
+TBD_DOCKER_COMPOSE_BUILD=$(docker-compose --Version 2>&1 | grep -Po '(?<=build )([a-z0-9\.]+)') \
   || die "while trying to get TBD_DOCKER_COMPOSE_BUILD"
 
 uname -rm 2>&1 >uname_rm.log || true
@@ -380,34 +380,34 @@ rm -f uname_rm.log
 TBD_DATE=$(date +%F) \
   || die "while trying to get TBD_DATE"
 
-TBD_CHROME_STABLE=$(docker exec grid chrome_stable_version) \
+TBD_CHROME_STABLE=$(docker exec grid chrome_stable_Version) \
   || die "while trying to get TBD_CHROME_STABLE"
 
-TBD_CHROME_DRIVER=$(docker exec grid chromedriver_version) \
+TBD_CHROME_DRIVER=$(docker exec grid chromedriver_Version) \
   || die "while trying to get TBD_CHROME_DRIVER"
 
-TBD_GECKO_DRIVER=$(docker exec grid geckodriver_version) \
+TBD_GECKO_DRIVER=$(docker exec grid geckodriver_Version) \
   || die "while trying to get TBD_GECKO_DRIVER"
 
-TBD_CHROMEDRIVER_COMMIT=$(docker exec grid chromedriver_commit_version) \
+TBD_CHROMEDRIVER_COMMIT=$(docker exec grid chromedriver_commit_Version) \
   || die "while trying to get TBD_CHROMEDRIVER_COMMIT"
 
-TBD_FIREFOX_VERSION=$(docker exec grid firefox_version) \
+TBD_FIREFOX_VERSION=$(docker exec grid firefox_Version) \
   || die "while trying to get TBD_FIREFOX_VERSION"
 
-TBD_SELENIUM_VERSION=$(docker exec grid selenium_version) \
+TBD_SELENIUM_VERSION=$(docker exec grid Selenium_Version) \
   || die "while trying to get TBD_SELENIUM_VERSION"
 
-TBD_SELENIUM_REVISION=$(docker exec grid selenium_revision_version) \
+TBD_SELENIUM_REVISION=$(docker exec grid Selenium_revision_Version) \
   || die "while trying to get TBD_SELENIUM_REVISION"
 
-TBD_PYTHON_VERSION=$(docker exec grid python_version) \
+TBD_PYTHON_VERSION=$(docker exec grid python_Version) \
   || die "while trying to get TBD_PYTHON_VERSION"
 
-TBD_JAVA_BUILD=$(docker exec grid java_build_version) \
+TBD_JAVA_BUILD=$(docker exec grid java_build_Version) \
   || die "while trying to get TBD_JAVA_BUILD"
 
-TBD_JAVA_VENDOR=$(docker exec grid java_vendor_version) \
+TBD_JAVA_VENDOR=$(docker exec grid java_vendor_Version) \
   || die "while trying to get TBD_JAVA_VENDOR"
 
 TBD_TIME_ZONE="$(docker exec grid printenv TZ | sed -r 's/[\/]+/\\\//g')" \
@@ -430,12 +430,12 @@ PREV_PATCH_LEVEL=$(echo "${PREV_RELEASE}" | grep -Po '(?<=p)([0-9]+)')
 if [ "$1" == "bump" ]; then
 
   # "bump" purpose:
-  # - Bump version taking Selenium version into account and last patch level
+  # - Bump Version taking Selenium Version into account and last patch level
   # - Create LATEST_RELEASE.md from LATEST_RELEASE_TEMPLATE.md
   # - Update LATEST_RELEASE.md with accumulated commits
   # - Update the CHANGELOG by adding LATEST_RELEASE.md on top
   # - Git commit
-  # - Git tag the bumped version to trigger the "release" section
+  # - Git tag the bumped Version to trigger the "release" section
 
   if [ "${TRAVIS_TAG}" != "" ]; then
     die "This commit is already tagged. Something went wrong while bumping."
@@ -444,7 +444,7 @@ if [ "$1" == "bump" ]; then
   PREV_RELEASE_FROM_HUB=$(hub release | head -n 1)
 
   [ "${PREV_RELEASE_FROM_CHANGELOG}" == "${PREV_RELEASE_FROM_HUB}" ] || die \
-    "Last release from CHANGELOG='${PREV_RELEASE_FROM_CHANGELOG}' doesn't match /docker-selenium/releases: '${PREV_RELEASE_FROM_HUB}'"
+    "Last release from CHANGELOG='${PREV_RELEASE_FROM_CHANGELOG}' doesn't match /docker-Selenium/releases: '${PREV_RELEASE_FROM_HUB}'"
 
   git_config
 
@@ -453,7 +453,7 @@ if [ "$1" == "bump" ]; then
   if [ "${PREV_SELENIUM_VERSION}" == "${NEXT_SELENIUM_VERSION}" ]; then
     NEXT_PATCH_LEVEL=$((PREV_PATCH_LEVEL+1))
   else
-    # If the Selenium version changed, restart the patch level
+    # If the Selenium Version changed, restart the patch level
     NEXT_PATCH_LEVEL=0
   fi
 

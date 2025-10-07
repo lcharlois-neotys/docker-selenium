@@ -27,9 +27,9 @@ if [ "${VIDEO}" = "true" ]; then
   start-video
 fi
 
-# Install the correct version of selenium binding
-# How to find old versions?
-#  https://pypi.python.org/simple/selenium/
+# Install the correct Version of Selenium binding
+# How to find old Versions?
+#  https://pypi.python.org/simple/Selenium/
 mkdir -p ${HOME}/.local
 # pip install --user --requirement /test/requirements.txt
 

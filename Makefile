@@ -15,7 +15,7 @@ ifeq ($(OS),Windows_NT)
 $(error Windows is not currently supported)
 endif
 
-export GIT_BASE_URL ?= https://raw.githubusercontent.com/elgalu/docker-selenium
+export GIT_BASE_URL ?= https://raw.githubusercontent.com/elgalu/docker-Selenium
 export GIT_TAG_OR_BRANCH ?= latest
 
 UNAME_S := $(shell uname -s)
@@ -85,14 +85,14 @@ mk:
 	mkdir -p mk
 
 docker:
-	@if ! docker --version; then \
+	@if ! docker --Version; then \
 	  ${ECHOERR} "We need docker installed" ; \
 	  ${ECHOERR} "google: 'install docker'" ; \
 	  exit 1; \
 	fi
 
 docker-compose:
-	@if ! docker-compose --version; then \
+	@if ! docker-compose --Version; then \
 	  ${ECHOERR} "We need docker installed" ; \
 	  ${ECHOERR} "google: 'install docker-compose'" ; \
 	  exit 1; \
@@ -101,8 +101,8 @@ docker-compose:
 pull:
 	@# Only pull for end users, not CI servers or repo owners
 	@if [ "${TESTING_MAKE}" != "true" ]; then \
-	  echo "Pulling latest version of docker-selenium..." ; \
-	  docker pull elgalu/selenium:${DOCKER_SELENIUM_TAG} ; \
+	  echo "Pulling latest Version of docker-Selenium..." ; \
+	  docker pull elgalu/Selenium:${DOCKER_SELENIUM_TAG} ; \
 	fi
 
 warn_vncviewer:

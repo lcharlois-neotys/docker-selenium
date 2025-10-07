@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Dependencies
-#  pip install -U selenium==3.3.1
+#  pip install -U Selenium==3.3.1
 # Usage
 #  curl -sSL https://raw.github.com/dosel/t/i/s | python
 import os
@@ -12,22 +12,22 @@ import datetime
 from retrying import retry
 
 # Import the Selenium 2 namespace (aka "webdriver")
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from Selenium import webdriver
+from Selenium.webdriver.common.keys import Keys
+from Selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from Selenium.webdriver.common.by import By
+from Selenium.common.exceptions import NoSuchElementException
 
 import argparse
-parser = argparse.ArgumentParser(description='Perform some basic selenium tests.')
+parser = argparse.ArgumentParser(description='Perform some basic Selenium tests.')
 parser.add_argument('browser', choices=['chrome', 'firefox', 'mobile_emulation'], nargs='?', default='chrome',
                     help='in which browser to test')
 parser.add_argument('only_screenshot', choices=['true', 'false'], nargs='?', default='false',
-                    help='if we just want to take selenium versions screen shots')
+                    help='if we just want to take Selenium Versions screen shots')
 
 args = parser.parse_args()
 
-# http://selenium-python.readthedocs.org/en/latest/api.html
+# http://Selenium-python.readthedocs.org/en/latest/api.html
 if args.browser == 'chrome':
     caps = DesiredCapabilities.CHROME
     browserName = args.browser
@@ -45,18 +45,18 @@ else:
 
 msleep = float( os.environ.get('TEST_SLEEPS', '0.01') )
 
-# http://selenium-python.readthedocs.io/api.html#desired-capabilities
+# http://Selenium-python.readthedocs.io/api.html#desired-capabilities
 # Create a desired capabilities object as a starting point.
 browserVersion = os.environ.get('CAPS_BROWSER_VERSION', '')
 
-# http://selenium-python.readthedocs.org/en/latest/api.html
+# http://Selenium-python.readthedocs.org/en/latest/api.html
 sel_proto = os.environ.get('SELENIUM_HUB_PROTO','http')
 sel_host = os.environ.get('SELENIUM_HUB_HOST','localhost')
 sel_port = os.environ.get('SELENIUM_HUB_PORT','4444')
-myselenium_base_url = "%s://%s:%s" % (sel_proto, sel_host, sel_port)
-myselenium_grid_console_url = "%s/grid/console" % (myselenium_base_url)
-myselenium_hub_url = "%s/wd/hub" % (myselenium_base_url)
-myselenium_hub_url = os.environ.get('SELENIUM_URL', myselenium_hub_url)
+mySelenium_base_url = "%s://%s:%s" % (sel_proto, sel_host, sel_port)
+mySelenium_grid_console_url = "%s/grid/console" % (mySelenium_base_url)
+mySelenium_hub_url = "%s/wd/hub" % (mySelenium_base_url)
+mySelenium_hub_url = os.environ.get('SELENIUM_URL', mySelenium_hub_url)
 
 # Group tests by `build`
 buildId = "%s%s" % (os.environ.get('JOB_NAME', ''), os.environ.get('BUILD_NUMBER', ''))
@@ -76,7 +76,7 @@ height = os.environ.get('SCREEN_HEIGHT','600')
 # Build the capabilities
 caps = {'browserName': browserName}
 caps['platform'] = os.environ.get('CAPS_OS_PLATFORM', 'ANY')
-caps['version'] = browserVersion
+caps['Version'] = browserVersion
 # caps['tunnelIdentifier'] = os.environ.get('TUNNEL_ID', 'zalenium')
 caps['tunnel-identifier'] = os.environ.get('TUNNEL_ID', 'zalenium')
 # caps['screenResolution'] = "%sx%sx24" % (width, height)
@@ -92,13 +92,13 @@ if args.browser == 'firefox':
         },
     }
 
-# https://selenium-python.readthedocs.io/getting-started.html#using-selenium-with-remote-webdriver
-print ("%s %s - (01/15) Will connect to selenium at %s" % (datetime.datetime.utcnow(), longId, myselenium_hub_url))
-driver = webdriver.Remote(command_executor=myselenium_hub_url, desired_capabilities=caps)
+# https://Selenium-python.readthedocs.io/getting-started.html#using-Selenium-with-remote-webdriver
+print ("%s %s - (01/15) Will connect to Selenium at %s" % (datetime.datetime.utcnow(), longId, mySelenium_hub_url))
+driver = webdriver.Remote(command_executor=mySelenium_hub_url, desired_capabilities=caps)
 time.sleep(msleep)
 
 def get_a_chrome_headless_driver():
-    from selenium.webdriver.chrome.options import Options
+    from Selenium.webdriver.chrome.options import Options
 
     CHROME_PATH = '/usr/bin/google-chrome-stable'
     CHROMEDRIVER_PATH = '/home/user/bin/chromedriver'
@@ -124,9 +124,9 @@ driver.set_window_size(width, height)
 
 @retry(stop_max_attempt_number=8, stop_max_delay=20100, wait_fixed=200)
 def open_hub_page():
-    print ("%s %s - Opening local selenium grid console page %s" %
-           (datetime.datetime.utcnow(), longId, myselenium_grid_console_url))
-    driver.get(myselenium_grid_console_url)
+    print ("%s %s - Opening local Selenium grid console page %s" %
+           (datetime.datetime.utcnow(), longId, mySelenium_grid_console_url))
+    driver.get(mySelenium_grid_console_url)
 
 @retry(stop_max_attempt_number=8, stop_max_delay=20100, wait_fixed=200)
 def check_hub_title():

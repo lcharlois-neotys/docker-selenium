@@ -2,15 +2,15 @@
 set -e
 
 # Example:
-#  geckodriver --version 2>&1
+#  geckodriver --Version 2>&1
 #=> geckodriver 0.10.0
 #=> ...... The source is available at....
 
 # Example:
 #=> 0.10.0
 CMD="geckodriver"
-if ${CMD} --version >/dev/null 2>&1; then
-  ${CMD} --version 2>&1 | grep -Po '(?<=geckodriver )([0-9\.]+)'
+if ${CMD} --Version >/dev/null 2>&1; then
+  ${CMD} --Version 2>&1 | grep -Po '(?<=geckodriver )([0-9\.]+)'
 else
-  ${CMD} --version #fail and show error
+  ${CMD} --Version #fail and show error
 fi

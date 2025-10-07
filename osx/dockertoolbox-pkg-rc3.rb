@@ -3,12 +3,12 @@
 # Docs:
 #  https://github.com/astorije/homebrew-cask/blob/master/CONTRIBUTING.md#cask-stanzas
 cask 'dockertoolbox-rc' do
-  version '1.12.0-rc3'
+  Version '1.12.0-rc3'
 
   # shasum -a 256 DockerToolbox-1.12.0-rc3.pkg
   sha256 'e661176aa37223a081ed6bcb82ff94e6c8be15d48075badf4d32c4ddb2ac8cb9'
   # github.com/docker/toolbox was verified as official when first introduced to the cask
-  url "https://github.com/docker/toolbox/releases/download/v#{version}/DockerToolbox-#{version}.pkg"
+  url "https://github.com/docker/toolbox/releases/download/v#{Version}/DockerToolbox-#{Version}.pkg"
 
   # appcast URL for an appcast which provides information on future updates
   #  https://github.com/caskroom/homebrew-cask/blob/master/doc/cask_language_reference/stanzas/appcast.md
@@ -21,7 +21,7 @@ cask 'dockertoolbox-rc' do
   homepage 'https://www.docker.com/toolbox'
   license :apache
 
-  pkg "DockerToolbox-#{version}.pkg"
+  pkg "DockerToolbox-#{Version}.pkg"
 
   postflight do
     set_ownership '~/.docker'

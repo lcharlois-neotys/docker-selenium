@@ -6,7 +6,7 @@ SEL_STATUS_URL="http://${SELENIUM_NODE_HOST}:${SELENIUM_NODE_FF_PORT}/wd/hub/sta
 set -e
 
 if [ "${FIREFOX}" != "true" ]; then
-  echo "Won't start selenium node firefox due to FIREFOX env var false"
+  echo "Won't start Selenium node firefox due to FIREFOX env var false"
   exit 0
 fi
 
@@ -37,4 +37,4 @@ while ! curl -s "${SEL_STATUS_URL}" | sh -c "${SUCESS_CMD}"; do
   fi
 done
 
-echo "Done wait-selenium-node-firefox-${FIREFOX_VERSION}"
+echo "Done wait-Selenium-node-firefox-${FIREFOX_VERSION}"

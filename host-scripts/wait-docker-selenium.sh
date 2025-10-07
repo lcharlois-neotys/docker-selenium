@@ -47,7 +47,7 @@ else
     bash -c 'errors' || true
 
   die "
-   Your docker-selenium didn't start properly.
+   Your docker-Selenium didn't start properly.
    Start it next time with -e DISABLE_ROLLBACK=true
   "
 fi

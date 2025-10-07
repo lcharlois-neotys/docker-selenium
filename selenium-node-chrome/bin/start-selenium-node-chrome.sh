@@ -22,20 +22,20 @@ die () {
 [ -z "${CHROME_PATH}" ] && die "Required env var CHROME_PATH"
 
 if [ "${ZALENIUM}" != "true" ]; then
-  timeout --foreground ${WAIT_TIMEOUT} wait-selenium-hub.sh || \
-    shutdown "Failed while waiting for selenium hub to start!"
+  timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-hub.sh || \
+    shutdown "Failed while waiting for Selenium hub to start!"
 fi
 
 JAVA_OPTS="$(java-dynamic-memory-opts.sh) ${JAVA_OPTS}"
 echo "INFO: JAVA_OPTS are '${JAVA_OPTS}'"
 
 # See standalone params docs at
-#  https://code.google.com/p/selenium/wiki/Grid2
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
+#  https://code.google.com/p/Selenium/wiki/Grid2
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
 # See node defaults at
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
 CHROME_BROWSER_CAPS="browserName=chrome,${COMMON_CAPS}"
-CHROME_BROWSER_CAPS="${CHROME_BROWSER_CAPS},version=${CHROME_VERSION}"
+CHROME_BROWSER_CAPS="${CHROME_BROWSER_CAPS},Version=${CHROME_VERSION}"
 
 java \
   -Dwebdriver.chrome.driver="/home/seluser/chromedriver" \

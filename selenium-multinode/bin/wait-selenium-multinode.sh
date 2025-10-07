@@ -6,7 +6,7 @@ SEL_STATUS_URL="http://${SELENIUM_NODE_HOST}:${SELENIUM_MULTINODE_PORT}/wd/hub/s
 set -e
 
 if [ "${MULTINODE}" != "true" ]; then
-  echo "Won't start selenium multi-node (Chrome & Firefox) due to MULTINODE env var false"
+  echo "Won't start Selenium multi-node (Chrome & Firefox) due to MULTINODE env var false"
   exit 0
 fi
 
@@ -37,4 +37,4 @@ while ! curl -s "${SEL_STATUS_URL}" | sh -c "${SUCESS_CMD}"; do
   fi
 done
 
-echo "Done wait-selenium-multinode.sh"
+echo "Done wait-Selenium-multinode.sh"

@@ -22,8 +22,8 @@ die () {
 [ -z "${FIREFOX_DEST_BIN}" ] && die "Required env var FIREFOX_DEST_BIN"
 
 if [ "${ZALENIUM}" != "true" ]; then
-  timeout --foreground ${WAIT_TIMEOUT} wait-selenium-hub.sh || \
-    shutdown "Failed while waiting for selenium hub to start!"
+  timeout --foreground ${WAIT_TIMEOUT} wait-Selenium-hub.sh || \
+    shutdown "Failed while waiting for Selenium hub to start!"
 fi
 
 JAVA_OPTS="-Dwebdriver.gecko.driver=/usr/bin/geckodriver ${JAVA_OPTS}"
@@ -31,13 +31,13 @@ JAVA_OPTS="$(java-dynamic-memory-opts.sh) ${JAVA_OPTS}"
 echo "INFO: JAVA_OPTS are '${JAVA_OPTS}'"
 
 # See standalone params docs at
-#  https://code.google.com/p/selenium/wiki/Grid2
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
+#  https://code.google.com/p/Selenium/wiki/Grid2
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/GridParameters.properties
 # See node defaults at
-#  https://github.com/pilwon/selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
+#  https://github.com/pilwon/Selenium-webdriver/blob/master/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json
 # TODO: how to set default firefox to latest?
 FIREFOX_BROWSER_CAPS="browserName=firefox,${COMMON_CAPS}"
-FIREFOX_BROWSER_CAPS="${FIREFOX_BROWSER_CAPS},version=${FIREFOX_VERSION}"
+FIREFOX_BROWSER_CAPS="${FIREFOX_BROWSER_CAPS},Version=${FIREFOX_VERSION}"
 
 # public static final String BROWSER_LOGFILE = "webdriver.firefox.logfile";
 #   System property that defines the location of the file where Firefox log should be stored.

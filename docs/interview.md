@@ -1,6 +1,6 @@
 ### Interview
 
-A few days ago [Lauri Apple][lauri] and [Raffaele Di Fazio][raffo] approached me with a few interesting questions about [docker-selenium][] that we decided to share here.
+A few days ago [Lauri Apple][lauri] and [Raffaele Di Fazio][raffo] approached me with a few interesting questions about [docker-Selenium][] that we decided to share here.
 
 <h4 id="WHAT">What is the project about?</h4>
 
@@ -13,11 +13,11 @@ The project started while I was in charge of building and maintaining the test a
 The objective was to run the tests headless, different solutions existed for that and there is [PhantomJS][] for example but we needed real browsers like Chrome or Firefox to run our tests on, one reason was to get better test confidence and the other was that [Protractor][] doesn't [play nice][prot-browser-support] with [PhantomJS][].
 Recently [Wallaby.js][] announced they will support [Electron][] as an alternative to [PhantomJS][] because it allows to use the latest Chromium/V8 which might be equivalent to running in Chrome however it sill needs a display so [xvfb][xvfb-electron] is needed.
 
-With [Selenium][], you can always run your tests locally but as soon as your tests runs the browser popping up in your main display can be annoying, you could configure your windows manager to move it automatically to another workspace for example and similar solutions exists but why going into all those troubles if you can just `docker run selenium`.
+With [Selenium][], you can always run your tests locally but as soon as your tests runs the browser popping up in your main display can be annoying, you could configure your windows manager to move it automatically to another workspace for example and similar solutions exists but why going into all those troubles if you can just `docker run Selenium`.
 
-You can also configure a [headless Xvfb selenium][xvfb-sel] as it is a common use case in Jenkins CI but, again, why going into the trouble now [docker][] exists.
+You can also configure a [headless Xvfb Selenium][xvfb-sel] as it is a common use case in Jenkins CI but, again, why going into the trouble now [docker][] exists.
 
-So back in 2014 the first thing I did was googling "selenium in docker", looked around 2 to 3 projects that were floating around but not well maintained so decided to create my own.
+So back in 2014 the first thing I did was googling "Selenium in docker", looked around 2 to 3 projects that were floating around but not well maintained so decided to create my own.
 
 <h4 id="LONG">How long has it been around?</h4>
 
@@ -33,13 +33,13 @@ The reason for pushing the new releases (docker images) from [Travis][travis-bui
 
 There was no promotion in the beginning, I suppose the success of it is due to the fact that is an obvious use case for any developer that needs [Selenium][] and knows how handy [docker][] technology is regarding disposable infrastructure.
 
-Automation testers probably Google 2 words: *selenium* and *docker* then the top results are the official project and secondly this one or sometimes the other way around depending on Google mood *(i.e. Google algorithm in relation to the browser user stats)*.
+Automation testers probably Google 2 words: *Selenium* and *docker* then the top results are the official project and secondly this one or sometimes the other way around depending on Google mood *(i.e. Google algorithm in relation to the browser user stats)*.
 
 <h4 id="PITCH">How did you get some of our Zalando teams to use it? How did you make the pitch?</h4>
 
 When I started at [Zalando][] in March 2015 we didn't have [Sauce Labs][sauce], only a centralized [Selenium Grid][grid] in our data center which acted as a kind of [SPOF][] (Single Point of Failure) for our [Zalando teams][zal-teams] let alone the fact you couldn't see the tests running nor have recorded video results which are 2 features of this project.
 
-My team, in charge of the Test Infrastructure, later on managed to acquire [Sauce Labs][sauce] enterprise which has all these features and support hundreds of browsers combinations so is the natural preferred way of getting a front-end testing infrastructure these days but [docker-selenium][] still keeps 3 advantages:
+My team, in charge of the Test Infrastructure, later on managed to acquire [Sauce Labs][sauce] enterprise which has all these features and support hundreds of browsers combinations so is the natural preferred way of getting a front-end testing infrastructure these days but [docker-Selenium][] still keeps 3 advantages:
 
 - **cost**: is free.
 - **speed**: runs around 2x faster than a paid cloud based [Selenium][] solution.
@@ -74,7 +74,7 @@ I can understand that in a huge widely used project like [AngularJS][] you get t
 
 ##### Working with contributors
 
-When [Matthew Smith][mtscout6] aka @mtscout6 jumped into the project, 4 months after it started, great things happened. He made a few interesting [improvements][matt-improv] but moreover we started conversations about moving [docker-selenium][] to the official [SeleniumHQ][] organization, Matt pushed this, contacted Mozilla guys and what not so it [happened][] and for a while we were maintaining only that one but I decided to continue maintaining mine with differentiated [features][] and that's why 2 project for the same purpose exist today.
+When [Matthew Smith][mtscout6] aka @mtscout6 jumped into the project, 4 months after it started, great things happened. He made a few interesting [improvements][matt-improv] but moreover we started conversations about moving [docker-Selenium][] to the official [SeleniumHQ][] organization, Matt pushed this, contacted Mozilla guys and what not so it [happened][] and for a while we were maintaining only that one but I decided to continue maintaining mine with differentiated [features][] and that's why 2 project for the same purpose exist today.
 
 ##### Technical debt
 
@@ -82,61 +82,61 @@ Main technical debt now is issue [31][] "Comply with docker official-images requ
 
 ##### Testing
 
-The [official][stock] one at [SeleniumHQ][] is using [CircleCI][] while [elgalu/selenium][] uses [TravisCI][] so tests basically have a couple of scenarios, running front-end tests on Chrome, on Firefox and restarting the container to check it still works after that. We should potentially add more tests for each bug that comes up to increase coverage in the future.
+The [official][stock] one at [SeleniumHQ][] is using [CircleCI][] while [elgalu/Selenium][] uses [TravisCI][] so tests basically have a couple of scenarios, running front-end tests on Chrome, on Firefox and restarting the container to check it still works after that. We should potentially add more tests for each bug that comes up to increase coverage in the future.
 
 <h4 id="FUTURE">What is the future of this project? What's the roadmap?</h4>
 
-Right now people tend to build long running selenium grids by using the [stock][] docker selenium images or this one however when you see [Sauce Labs][sauce] or [BrowserStack][] approach you realize the way to go is isolation, i.e. one machine or VM or docker container for each selenium session so those are the [next steps][next] for this project and perhaps a [Jenkins plugin][jenking-plugin]. Also [automate new versions detection][verdetection] e.g. new version of Chrome/Firefox/Selenium might be one of the chores to work on.
+Right now people tend to build long running Selenium grids by using the [stock][] docker Selenium images or this one however when you see [Sauce Labs][sauce] or [BrowserStack][] approach you realize the way to go is isolation, i.e. one machine or VM or docker container for each Selenium session so those are the [next steps][next] for this project and perhaps a [Jenkins plugin][jenking-plugin]. Also [automate new Versions detection][verdetection] e.g. new Version of Chrome/Firefox/Selenium might be one of the chores to work on.
 
 
 [lauri]: https://twitter.com/LauritaApplez
 [raffo]: http://raffo.github.io/
-[docker-selenium]: https://github.com/elgalu/docker-selenium
-[stock]: https://github.com/SeleniumHQ/docker-selenium
+[docker-Selenium]: https://github.com/elgalu/docker-Selenium
+[stock]: https://github.com/SeleniumHQ/docker-Selenium
 [AppNexus]: https://en.wikipedia.org/wiki/AppNexus
-[xvfb-sel]: http://elementalselenium.com/tips/38-headless
+[xvfb-sel]: http://elementalSelenium.com/tips/38-headless
 [xvfb-travis]: https://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-xvfb-to-Run-Tests-That-Require-a-GUI
 [xvfb-electron]: http://electron.atom.io/docs/tutorial/testing-on-headless-ci
 [PhantomJS]: https://github.com/ariya/phantomjs
 [Protractor]: https://github.com/angular/protractor
 [prot-browser-support]: https://angular.github.io/protractor/#/browser-support
-[TravisCI]: https://github.com/elgalu/docker-selenium/blob/master/.travis.yml
-[travis-build]: https://travis-ci.org/elgalu/docker-selenium/builds/123103275
-[CircleCI]: https://github.com/SeleniumHQ/docker-selenium/blob/master/circle.yml
-[31]: https://github.com/elgalu/docker-selenium/issues/31
-[40]: https://github.com/elgalu/docker-selenium/issues/40
-[matt-improv]: https://github.com/elgalu/docker-selenium/commits?author=mtscout6
-[happened]: https://github.com/SeleniumHQ/docker-selenium
-[features]: https://github.com/elgalu/docker-selenium#notes-on-similar-repo-seleniumhqdocker-selenium
+[TravisCI]: https://github.com/elgalu/docker-Selenium/blob/master/.travis.yml
+[travis-build]: https://travis-ci.org/elgalu/docker-Selenium/builds/123103275
+[CircleCI]: https://github.com/SeleniumHQ/docker-Selenium/blob/master/circle.yml
+[31]: https://github.com/elgalu/docker-Selenium/issues/31
+[40]: https://github.com/elgalu/docker-Selenium/issues/40
+[matt-improv]: https://github.com/elgalu/docker-Selenium/commits?author=mtscout6
+[happened]: https://github.com/SeleniumHQ/docker-Selenium
+[features]: https://github.com/elgalu/docker-Selenium#notes-on-similar-repo-Seleniumhqdocker-Selenium
 [presentation]: https://twitter.com/rubytester/status/644965076072574976
 [rubytester]: https://github.com/rubytester
 [tweet1]: https://twitter.com/vvoyer/status/687266750380027905
 [tony]: https://www.linkedin.com/in/anthony-carrillo-1232422
 [SPOF]: https://en.wikipedia.org/wiki/Single_point_of_failure
-[analytics]: https://github.com/elgalu/docker-selenium/graphs/traffic
-[sauce]: https://saucelabs.com/selenium/selenium-grid
+[analytics]: https://github.com/elgalu/docker-Selenium/graphs/traffic
+[sauce]: https://saucelabs.com/Selenium/Selenium-grid
 [BrowserStack]: https://www.browserstack.com/automate
 [AngularJS]: https://angularjs.org/
 [Zalando]: https://tech.zalando.com/
 [travis-docker]: https://docs.travis-ci.com/user/docker/
-[Selenium]: https://github.com/SeleniumHQ/selenium
+[Selenium]: https://github.com/SeleniumHQ/Selenium
 [docker]: https://github.com/docker/docker
-[grid]: https://github.com/SeleniumHQ/selenium/wiki/Grid2
-[elgalu/selenium]: https://github.com/elgalu/docker-selenium
+[grid]: https://github.com/SeleniumHQ/Selenium/wiki/Grid2
+[elgalu/Selenium]: https://github.com/elgalu/docker-Selenium
 [angular-issues]: https://git.io/vwntr
 [docker-issues]: https://git.io/vwnq5
 [mtscout6]: https://github.com/mtscout6
 [SeleniumHQ]: https://github.com/SeleniumHQ
-[next]: https://github.com/elgalu/docker-selenium/issues/65#issuecomment-212462604
-[jenking-plugin]: https://github.com/elgalu/docker-selenium/issues/80
-[verdetection]: https://github.com/elgalu/docker-selenium/issues/81
+[next]: https://github.com/elgalu/docker-Selenium/issues/65#issuecomment-212462604
+[jenking-plugin]: https://github.com/elgalu/docker-Selenium/issues/80
+[verdetection]: https://github.com/elgalu/docker-Selenium/issues/81
 [zal-teams]: https://tech.zalando.com/blog/radical-agility-with-autonomous-teams-and-microservices-in-the-cloud/
 [Algolia]: https://www.algolia.com/
 [@vvo]: https://github.com/vvo
 [auto-builds]: https://docs.docker.com/docker-hub/builds
 [CI]: https://en.wikipedia.org/wiki/Continuous_integration
-[stock-208]: https://github.com/SeleniumHQ/docker-selenium/issues/208
-[tests]: https://github.com/elgalu/docker-selenium/tree/master/test
+[stock-208]: https://github.com/SeleniumHQ/docker-Selenium/issues/208
+[tests]: https://github.com/elgalu/docker-Selenium/tree/master/test
 [Wallaby.js]: https://wallabyjs.com
 [Electron]: https://wallabyjs.com/docs/integration/electron.html
 [gource]: ./gource.md
